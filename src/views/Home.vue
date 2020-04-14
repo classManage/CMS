@@ -18,13 +18,13 @@
 </template>
 
 <script>
-import Sidebar from '@/components/page/Sidebar.vue'
+import { Sidebar } from "@/utils/components";
 
 export default {
   data() {
     return {};
   },
-  components:{
+  components: {
     Sidebar
   },
   methods: {
