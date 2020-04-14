@@ -1,13 +1,9 @@
 <template>
-    <div>
-        管理首页
-    </div>
+  <div>
+    管理首页
+  </div>
 </template>
 <script>
-export default {
-    
-}
+export default {};
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>
