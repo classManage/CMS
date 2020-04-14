@@ -9,5 +9,5 @@
 html,body,#app{
   height:100%;
 }
-/**:-moz-any(666666666666) */
+
 </style>

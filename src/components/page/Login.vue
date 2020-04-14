@@ -7,19 +7,19 @@
        <span></span>
        <span></span>
        <div class="box-title">班级管理</div>
-      <el-form label-width="0px" class="box-content">
-          <el-form-item :model="param">
+      <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="box-content">
+          <el-form-item prop="username">
             <el-input v-model="param.username" ref="myinput" placeholder="admin">
               <el-button slot="prepend" icon="el-icon-s-custom"></el-button>
             </el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="password">
             <el-input type="password" v-model="param.password" placeholder="password">
               <el-button slot="prepend" icon="el-icon-lock"></el-button>
             </el-input>
           </el-form-item>
           <div class="login-btn">              
-           <el-button type="primary" @click="submitForm()">登录</el-button>
+           <el-button type="primary" @click="submitForm">登录</el-button>
           </div>
           
       </el-form>
@@ -29,34 +29,58 @@
 
 <script>
 export default {
-    data(){
-      return{
-         param:{
+    data() {
+      return {
+         param: {
            username:'',
            password:''
          },
+        //  这是表单的验证规则对象
+         rules: {
+           username:[
+              { required: true, message: '请输入用户名', trigger: 'blur' },
+              { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
+           ],
+           password:[
+              { required: true, message: '请输入密码', trigger: 'blur' },
+              { min: 3, max: 10, message: '长度在 3 到 15 个字符', trigger: 'blur' }
+           ]
+
+         }
         
       }
     },
-     mounted(){
+     mounted() {
            this.$refs.myinput.focus()
            
          },
-         methods:{
-           submitForm(){
-             console.log('哈哈')
+         methods: {
+           submitForm() {
+            this.$refs.login.validate(valid =>{
+              // console.log(valid)
+              if(valid) {
+                   this.$message.success('登录成功');
+                   this.$router.push('/home')
+              } else {
+                this.$message.error('请输入账号和密码');
+                console.log('error submit!!')
+                
+                return false;
+              }
+            })
            }
          }
 }
 </script>
 
 <style scoped>
-
  .login-interface{
    position: relative;
    width:100%;
    height: 100%;
-   background-color:green;
+   background-image: url(../../assets/img/fj3.jpg);
+   background-size: 100%;
+   
  }
  .login-box{
   	position: absolute;
@@ -152,6 +176,7 @@ export default {
 			} 
       .box-content{
         padding: 100px 30px;
+        position: relative;
       }
       .login-btn{
         text-align: center;
