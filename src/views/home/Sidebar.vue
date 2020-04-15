@@ -1,18 +1,20 @@
 <template>
   <el-menu
-    text-color="#fff"
-    active-text-color="rgb(68,232,247)"
-    :unique-opened="true"
-    default-active="1"
+    default-active="/basic"
+    class="el-menu-vertical-demo"
+    :collapse="isCollapse"
+    :background-color="themeSidebar.backgroundColor"
+    :text-color="themeText.color"
     router
   >
-    <el-menu-item index="/basic">
-      <i class="el-icon-menu"></i>
+    <el-menu-item index="basic">
+      <i class="el-icon-s-home"></i>
       <span slot="title">管理首页</span>
     </el-menu-item>
+
     <el-submenu index="2">
       <template slot="title">
-        <i class="el-icon-location"></i>
+        <i class="el-icon-s-data"></i>
         <span>基本情况</span>
       </template>
       <el-menu-item index="/homTeacher">
@@ -46,9 +48,10 @@
         </template>
       </el-menu-item>
     </el-submenu>
+
     <el-submenu index="3">
       <template slot="title">
-        <i class="el-icon-location"></i>
+        <i class="el-icon-s-claim"></i>
         <span>考勤</span>
       </template>
       <el-menu-item index="1-4-1">
@@ -70,7 +73,7 @@
 
     <el-submenu index="4">
       <template slot="title">
-        <i class="el-icon-location"></i>
+        <i class="el-icon-money"></i>
         <span>班费</span>
       </template>
       <el-menu-item index="1-4-1">
@@ -89,9 +92,10 @@
         </template>
       </el-menu-item>
     </el-submenu>
+
     <el-submenu index="5">
       <template slot="title">
-        <i class="el-icon-location"></i>
+        <i class="el-icon-s-grid"></i>
         <span>课表</span>
       </template>
       <el-menu-item index="1-4-1">
@@ -105,9 +109,10 @@
         </template>
       </el-menu-item>
     </el-submenu>
+
     <el-submenu index="6">
       <template slot="title">
-        <i class="el-icon-location"></i>
+        <i class="el-icon-s-marketing"></i>
         <span>分数查询</span>
       </template>
       <el-menu-item index="1-4-1">
@@ -136,9 +141,10 @@
         </template>
       </el-menu-item>
     </el-submenu>
+
     <el-submenu index="7">
       <template slot="title">
-        <i class="el-icon-location"></i>
+        <i class="el-icon-s-flag"></i>
         <span>班级风采</span>
       </template>
       <el-menu-item index="1-4-1">
@@ -152,9 +158,43 @@
         </template>
       </el-menu-item>
     </el-submenu>
-    <el-menu-item index="8">
-      <i class="el-icon-menu"></i>
-      <span slot="title">意见反馈</span>
+
+    <el-menu-item index="setting">
+      <i class="el-icon-s-tools"></i>
+      <span slot="title">系统设置</span>
+    </el-menu-item>
+
+    <el-menu-item index="9">
+      <i class="el-icon-s-opportunity"></i>
+      <span slot="title">意见&反馈</span>
     </el-menu-item>
   </el-menu>
 </template>
+
+<style>
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
+.el-menu-vertical-demo {
+  height: 100%;
+}
+</style>
+
+<script>
+import { mapState } from "vuex";
+
+export default {
+  data() {
+    return {};
+  },
+  props: {
+    isCollapse: Boolean //折叠
+  },
+  computed: {
+    ...mapState("theme", ["themeText", "themeSidebar"])
+  },
+  methods: {},
+  mounted() {}
+};
+</script>

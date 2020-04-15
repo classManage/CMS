@@ -1,8 +1,19 @@
 <template>
-  <div id="app">
+  <div id="app" :style="themeText">
     <router-view />
   </div>
 </template>
+
+<script>
+import { mapState } from "vuex";
+
+export default {
+  computed: {
+    ...mapState("theme", ["themeText"])
+  },
+  mounted() {}
+};
+</script>
 
 <style>
 * {

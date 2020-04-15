@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { Login, Home, Basic, HomTeacher } from "@/utils/components";
+import { Login, Home, Basic, HomTeacher, Setting } from "@/utils/components";
 
 Vue.use(VueRouter);
 
@@ -22,6 +22,10 @@ const routes = [
       {
         path: "homTeacher",
         component: HomTeacher
+      },
+      {
+        path: "Setting",
+        component: Setting
       },
       {
         path: "",
