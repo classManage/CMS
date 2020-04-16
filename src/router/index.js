@@ -8,24 +8,28 @@ const routes = [
   {
     path: "/login",
     component: Login,
-    name: "Login"
+    name: "Login",
+    meta: "登录"
   },
   {
     path: "/home",
     component: Home,
-    name: "Home",
+    meta: "主页",
     children: [
       {
         path: "basic",
-        component: Basic
+        component: Basic,
+        meta: "管理首页"
       },
       {
         path: "homTeacher",
-        component: HomTeacher
+        component: HomTeacher,
+        meta: "老师"
       },
       {
         path: "Setting",
-        component: Setting
+        component: Setting,
+        meta: "系统设置"
       },
       {
         path: "",

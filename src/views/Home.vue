@@ -8,26 +8,23 @@
         <Sidebar :isCollapse="isCollapse"></Sidebar>
       </el-aside>
       <el-main>
-        <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom: 20px">
-          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-          <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-          <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-        </el-breadcrumb>
-        <router-view></router-view>
+        <Navigation></Navigation>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
       </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
-import { Sidebar, Header } from "@/utils/components";
+import { Sidebar, Header, Navigation } from "@/utils/components";
 import { mapState } from "vuex";
 
 export default {
   data() {
     return {
-      isCollapse: false //菜单折叠
+      isCollapse: true //菜单折叠
     };
   },
   computed: {
@@ -35,7 +32,8 @@ export default {
   },
   components: {
     Sidebar,
-    Header
+    Header,
+    Navigation
   },
   methods: {
     handleCollapse() {
@@ -49,5 +47,8 @@ export default {
 <style scoped>
 .home-container {
   height: 100%;
+}
+.el-main {
+  color: #303133;
 }
 </style>

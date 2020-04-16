@@ -1,10 +1,11 @@
 <template>
   <el-menu
-    default-active="/basic"
+    :default-active="activePath | filterActivePath"
     class="el-menu-vertical-demo"
     :collapse="isCollapse"
     :background-color="themeSidebar.backgroundColor"
     :text-color="themeText.color"
+    unique-opened
     router
   >
     <el-menu-item index="basic">
@@ -17,7 +18,7 @@
         <i class="el-icon-s-data"></i>
         <span>基本情况</span>
       </template>
-      <el-menu-item index="/homTeacher">
+      <el-menu-item index="homTeacher">
         <template slot="title">
           <span>班主任</span>
         </template>
@@ -188,13 +189,20 @@ export default {
   data() {
     return {};
   },
+
   props: {
     isCollapse: Boolean //折叠
   },
   computed: {
-    ...mapState("theme", ["themeText", "themeSidebar"])
+    ...mapState("theme", ["themeText", "themeSidebar"]),
+    ...mapState(["activePath"])
   },
   methods: {},
-  mounted() {}
+  mounted() {},
+  filters:{
+    filterActivePath(path){
+      return path.slice(path.lastIndexOf('/')+1);
+    }
+  }
 };
 </script>

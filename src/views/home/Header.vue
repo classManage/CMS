@@ -1,13 +1,23 @@
 <template>
   <div class="header">
     <div class="item">
-      <i :class="(isCollapse?'el-icon-s-unfold':'el-icon-s-fold')+' coll-button'" @click="handleCollapse"></i>
+      <i
+        :class="
+          (isCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold') + ' coll-button'
+        "
+        @click="handleCollapse"
+      ></i>
       <h1>班级管理系统</h1>
     </div>
 
     <div class="item">
       <div class="user-block">
-        <el-select v-model="value" placeholder="请选择要管理的班级" size="mini" class="class-select">
+        <el-select
+          v-model="value"
+          placeholder="请选择要管理的班级"
+          size="mini"
+          class="class-select"
+        >
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -16,9 +26,19 @@
           ></el-option>
         </el-select>
 
-        <el-avatar size="small" :src="require('@/assets/img/userIcon.jpeg')"></el-avatar>
+        <el-avatar
+          size="small"
+          :src="require('@/assets/img/userIcon.jpeg')"
+        ></el-avatar>
 
-        <el-dropdown size="medium" @command="''">
+        <el-dropdown
+          size="medium"
+          @command="
+            '';
+
+
+          "
+        >
           <span class="el-dropdown-link" :style="themeText">
             老许666
             <i class="el-icon-arrow-down el-icon--right"></i>
@@ -26,7 +46,9 @@
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="info">个人信息</el-dropdown-item>
             <el-dropdown-item command="logOff">注销</el-dropdown-item>
-            <el-dropdown-item command="logOut" divided>退出登录</el-dropdown-item>
+            <el-dropdown-item command="logOut" divided
+              >退出登录</el-dropdown-item
+            >
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -35,7 +57,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from "vuex";
 
 export default {
   data() {
@@ -65,11 +87,11 @@ export default {
       value: "18移动互联网"
     };
   },
-  computed:{
+  computed: {
     ...mapState("theme", ["themeText"])
   },
-  props:{
-    isCollapse: Boolean,
+  props: {
+    isCollapse: Boolean
   },
   methods: {
     handleCollapse() {
@@ -108,7 +130,7 @@ h1 {
 .class-select {
   margin-right: 50px;
 }
-.coll-button{
+.coll-button {
   cursor: pointer;
 }
 </style>
