@@ -7,24 +7,14 @@
       <span></span>
       <span></span>
       <div class="box-title">班级管理</div>
-      <el-form
-        :model="param"
-        :rules="rules"
-        ref="login"
-        label-width="0px"
-        class="box-content"
-      >
+      <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="box-content">
         <el-form-item prop="username">
           <el-input v-model="param.username" ref="myinput" placeholder="admin">
             <el-button slot="prepend" icon="el-icon-s-custom"></el-button>
           </el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input
-            type="password"
-            v-model="param.password"
-            placeholder="password"
-          >
+          <el-input type="password" v-model="param.password" placeholder="password">
             <el-button slot="prepend" icon="el-icon-lock"></el-button>
           </el-input>
         </el-form-item>
@@ -37,6 +27,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -52,7 +44,7 @@ export default {
         ],
         password: [
           { required: true, message: "请输入密码", trigger: "blur" },
-          { min: 3, max: 10, message: "长度在 3 到 15 个字符", trigger: "blur" }
+          { min: 3, max: 16, message: "长度在 3 到 16 个字符", trigger: "blur" }
         ]
       }
     };
@@ -62,18 +54,26 @@ export default {
   },
   methods: {
     submitForm() {
-      this.$refs.login.validate(valid => {
-        // console.log(valid)
-        if (valid) {
-          this.$message.success("登录成功");
-          this.$router.push("/home");
-        } else {
-          this.$message.error("请输入账号和密码");
-          console.log("error submit!!");
+      axios
+        .post("http://localhost:5000/login", {
+          name: this.param.username,
+          password: this.param.password
+        })
+        .then(res => {
+          console.log(res.data);
+        });
+      // this.$refs.login.validate(valid => {
+      //   // console.log(valid)
+      //   if (valid) {
+      //     this.$message.success("登录成功");
+      //     this.$router.push("/home");
+      //   } else {
+      //     this.$message.error("请输入账号和密码");
+      //     console.log("error submit!!");
 
-          return false;
-        }
-      });
+      //     return false;
+      //   }
+      // });
     }
   }
 };
@@ -84,8 +84,9 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  background-image: url("../assets/img/fj3.jpg");
-  background-size: 100%;
+  background-image: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587061999219&di=581c6403ca4cbe36aaa4b4b937fbaf77&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-10-18%2F59e6b63354e02.jpg");
+  background-size: cover;
+  filter: blur(0.1);
 }
 .login-box {
   position: absolute;

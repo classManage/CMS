@@ -199,9 +199,9 @@ export default {
   },
   methods: {},
   mounted() {},
-  filters:{
-    filterActivePath(path){
-      return path.slice(path.lastIndexOf('/')+1);
+  filters: {
+    filterActivePath(path) {
+      return path.slice(path.lastIndexOf("/") + 1);
     }
   }
 };

@@ -1,7 +1,10 @@
 <template>
   <el-container class="home-container">
     <el-header :style="themeHeader">
-      <Header @handleCollapse="handleCollapse" :isCollapse="isCollapse"></Header>
+      <Header
+        @handleCollapse="handleCollapse"
+        :isCollapse="isCollapse"
+      ></Header>
     </el-header>
     <el-container>
       <el-aside style="width: auto;" :style="themeSidebar">

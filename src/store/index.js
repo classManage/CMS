@@ -6,10 +6,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    activePath: '',//当前被激活的/home/?的路径
+    activePath: "" //当前被激活的/home/?的路径
   },
   mutations: {
-    changeActivePath(state, data){
+    changeActivePath(state, data) {
       state.activePath = data;
     }
   },

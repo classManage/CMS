@@ -9,7 +9,8 @@
       effect="plain"
       @close="handleTagClose(data)"
       @click="handleTagClick(data)"
-    >{{ data.title }}</el-tag>
+      >{{ data.title }}</el-tag
+    >
   </div>
 </template>
 
