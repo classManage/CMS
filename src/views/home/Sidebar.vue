@@ -33,7 +33,7 @@
           <span>获奖情况</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="1-4-4">
+      <el-menu-item index="photo">
         <template slot="title">
           <span>相册</span>
         </template>
