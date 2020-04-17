@@ -1,4 +1,5 @@
 <template>
+<!-- 相册 -->
   <div class="block">
   <el-timeline class="b-timeline">
     <el-timeline-item class="b-timeline-item" v-for="item in mydata" :key="item.id" :timestamp="item.timestamp" placement="top">
