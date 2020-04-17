@@ -1,4 +1,5 @@
 <template>
+<!-- 导航 -->
   <el-menu
     :default-active="activePath | filterActivePath"
     class="el-menu-vertical-demo"
@@ -33,7 +34,7 @@
           <span>获奖情况</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="1-4-4">
+      <el-menu-item index="photo">
         <template slot="title">
           <span>相册</span>
         </template>
@@ -153,7 +154,7 @@
           <span>活动</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="1-4-2">
+      <el-menu-item index="photo">
         <template slot="title">
           <span>相册</span>
         </template>

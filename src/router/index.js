@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { Login, Home, Basic, HomTeacher, Setting } from "@/utils/components";
+import { Login, Home, Basic, HomTeacher, Setting, Photo} from "@/utils/components";
 
 Vue.use(VueRouter);
 
@@ -25,6 +25,10 @@ const routes = [
         path: "homTeacher",
         component: HomTeacher,
         meta: "老师"
+      },
+      {
+        path: "photo",
+        component: Photo
       },
       {
         path: "Setting",
