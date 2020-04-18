@@ -23,6 +23,7 @@
 <script>
 import { Sidebar, Header, Navigation } from "@/utils/components";
 import { mapState } from "vuex";
+import { profile, setLocalToken } from "@/utils/ajax";
 
 export default {
   data() {
@@ -31,7 +32,8 @@ export default {
     };
   },
   computed: {
-    ...mapState("theme", ["themeHeader", "themeSidebar"]) //主题，为了实现多皮肤切换
+    ...mapState("theme", ["themeHeader", "themeSidebar"]), //主题，为了实现多皮肤切换
+    ...mapState(["userInfo"])
   },
   components: {
     Sidebar,
@@ -43,7 +45,22 @@ export default {
       this.isCollapse = !this.isCollapse;
     }
   },
-  mounted() {}
+  mounted() {
+    //如果vuex中没有用户信息，则尝试根据token更新用户信息
+    if (!Object.keys(this.userInfo).length) {
+      profile()
+        .then(data => {
+          console.log(data);
+          this.$store.commit("changeUserInfo", data);
+        })
+        .catch(err => {
+          console.log(err);
+          //如果token过期则清空token并跳到login
+          setLocalToken("");
+          this.$router.push("/login");
+        });
+    }
+  }
 };
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-<!-- 导航 -->
+  <!-- 导航 -->
   <el-menu
     :default-active="activePath | filterActivePath"
     class="el-menu-vertical-demo"

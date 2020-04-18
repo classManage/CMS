@@ -1,0 +1,30 @@
+@url=http://localhost:5000/api
+@json=Content-Type: application/json
+
+### 登录
+post {{url}}/login
+{{json}}
+
+{
+    "username": "yuwjoo3",
+    "password": "123456"
+}
+### 注册
+post {{url}}/register
+{{json}}
+
+{
+    "username": "yuwjoo2",
+    "password": "1234567",
+    "sex": "女",
+    "email": "1191759350@qq.com",
+    "phone": "17136375393",
+    "SID": "201803605113",
+    "nickname": "牧田"
+}
+### 所有用户
+get {{url}}/users
+
+### 个人信息
+get {{url}}/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlOTllMTM3YWEwNDhlMmE5YzU5OTM4ZCIsImlhdCI6MTU4NzE4ODAyMywiZXhwIjoxNTg3MTg4MDQzfQ.8YxznUNWZC3m64raxQw9IBUK1WecovgaPOk3GfFtM4o

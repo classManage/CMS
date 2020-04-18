@@ -31,16 +31,9 @@
           :src="require('@/assets/img/userIcon.jpeg')"
         ></el-avatar>
 
-        <el-dropdown
-          size="medium"
-          @command="
-            '';
-
-
-          "
-        >
+        <el-dropdown size="medium" @command="handleCommand">
           <span class="el-dropdown-link" :style="themeText">
-            老许666
+            {{ userInfo.username }}
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
@@ -58,6 +51,7 @@
 
 <script>
 import { mapState } from "vuex";
+import { setLocalToken } from "@/utils/ajax";
 
 export default {
   data() {
@@ -88,7 +82,8 @@ export default {
     };
   },
   computed: {
-    ...mapState("theme", ["themeText"])
+    ...mapState("theme", ["themeText"]),
+    ...mapState(["userInfo"])
   },
   props: {
     isCollapse: Boolean
@@ -96,6 +91,14 @@ export default {
   methods: {
     handleCollapse() {
       this.$emit("handleCollapse");
+    },
+    handleCommand(comm) {
+      //退出登录
+      if (comm === "logOut") {
+        //清空本地token
+        setLocalToken("");
+        this.$router.push("/login");
+      }
     }
   }
 };
