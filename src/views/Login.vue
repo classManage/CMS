@@ -21,6 +21,8 @@
         <div class="login-btn">
           <el-button type="primary" @click="submitForm">登录</el-button>
         </div>
+        <el-button type="text" @click="dialog = true">新用户注册</el-button>
+        
       </el-form>
     </div>
   </div>
