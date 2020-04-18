@@ -14,7 +14,7 @@ post {{url}}/register
 {{json}}
 
 {
-    "username": "yuwjoo2",
+    "username": "yuwjoo5",
     "password": "1234567",
     "sex": "女",
     "email": "1191759350@qq.com",
