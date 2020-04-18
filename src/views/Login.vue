@@ -7,14 +7,24 @@
       <span></span>
       <span></span>
       <div class="box-title">班级管理</div>
-      <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="box-content">
+      <el-form
+        :model="param"
+        :rules="rules"
+        ref="login"
+        label-width="0px"
+        class="box-content"
+      >
         <el-form-item prop="username">
           <el-input v-model="param.username" ref="myinput" placeholder="admin">
             <el-button slot="prepend" icon="el-icon-s-custom"></el-button>
           </el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input type="password" v-model="param.password" placeholder="password">
+          <el-input
+            type="password"
+            v-model="param.password"
+            placeholder="password"
+          >
             <el-button slot="prepend" icon="el-icon-lock"></el-button>
           </el-input>
         </el-form-item>
@@ -27,7 +37,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { login, setLocalUsername } from "@/utils/ajax";
 
 export default {
   data() {
@@ -54,26 +64,32 @@ export default {
   },
   methods: {
     submitForm() {
-      axios
-        .post("http://localhost:5000/login", {
-          name: this.param.username,
-          password: this.param.password
-        })
-        .then(res => {
-          console.log(res.data);
-        });
-      // this.$refs.login.validate(valid => {
-      //   // console.log(valid)
-      //   if (valid) {
-      //     this.$message.success("登录成功");
-      //     this.$router.push("/home");
-      //   } else {
-      //     this.$message.error("请输入账号和密码");
-      //     console.log("error submit!!");
-
-      //     return false;
-      //   }
-      // });
+      //检查表单
+      this.$refs.login.validate(valid => {
+        if (valid) {
+          //登录请求
+          login({
+            username: this.param.username,
+            password: this.param.password
+          })
+            .then(data => {
+              console.log(data);
+              //保存用户信息
+              this.$store.commit("changeUserInfo", data.userInfo);
+              //单独保存用户名
+              setLocalUsername(data.userInfo.username);
+              this.$message.success("登录成功");
+              this.$router.push("/home");
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        } else {
+          this.$message.error("请输入账号和密码");
+          console.log("error submit!!");
+          return false;
+        }
+      });
     }
   }
 };
