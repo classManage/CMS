@@ -3,7 +3,7 @@ const router = express.Router();
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const { Users } = require("./mongo");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 const { generateToken, verifyToken } = require("./jwk");
 
 // let jsonParser = bodyParser.json();
@@ -25,7 +25,8 @@ router.post("/login", jsonParser, async (req, res) => {
   if (!user) {
     return res.status(422).send(message("用户不存在"));
   }
-  let isPasswordValid = bcrypt.compareSync(req.body.password, user.password);
+  //   let isPasswordValid = bcrypt.compareSync(req.body.password, user.password);
+  let isPasswordValid = req.body.password == user.password;
   if (!isPasswordValid) {
     return res.status(423).send(message("密码无效"));
   }

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+// const bcrypt = require("bcrypt");
 
 mongoose.connect(
   "mongodb+srv://new-user_01:ZXFLvg0DRfshS6By@cluster0-dkf7l.azure.mongodb.net/CMS?retryWrites=true&w=majority",
@@ -10,10 +11,13 @@ mongoose.connect(
 );
 let schema = new mongoose.Schema({
   username: { type: String, unique: true },
-  password: {
-    type: String,
-    
-  },
+  //   password: {
+  //     type: String,
+  //     set(val) {
+  //       return bcrypt.hashSync(val, 10);
+  //     }
+  //   },
+  password: { type: String },
   sex: { type: String, enum: ["男", "女", "保密"] },
   email: { type: String },
   phone: { type: String },
