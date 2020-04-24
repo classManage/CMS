@@ -33,16 +33,17 @@
         </div>
       </el-form>
     </div>
+    <Register></Register>
   </div>
 </template>
 
 <script>
+import { Register } from "@/utils/components";
 import { login, setLocalUsername } from "@/utils/ajax";
-
 export default {
   data() {
     return {
-      param: {
+       param: {
         username: "",
         password: ""
       },
@@ -56,14 +57,18 @@ export default {
           { required: true, message: "请输入密码", trigger: "blur" },
           { min: 3, max: 16, message: "长度在 3 到 16 个字符", trigger: "blur" }
         ]
+        
       }
     };
+  },
+  components: {
+    Register
   },
   mounted() {
     this.$refs.myinput.focus();
   },
   methods: {
-    submitForm() {
+   submitForm() {
       //检查表单
       this.$refs.login.validate(valid => {
         if (valid) {
@@ -194,4 +199,10 @@ export default {
   height: 36px;
   margin-bottom: 10px;
 }
+/* .re-button{
+  position: absolute;
+  left: 48%;
+  top: 20%;
+  border-radius: 50%;
+} */
 </style>

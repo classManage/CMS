@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import {
   Login,
+  Register,
   Home,
   Basic,
   HomTeacher,
@@ -22,7 +23,14 @@ const routes = [
     path: "/login",
     component: Login,
     name: "Login",
-    meta: "登录"
+    meta: "登录",
+    children: [
+      {
+        path: "register",
+        component: Register,
+        name: "Register"
+      }
+    ]
   },
   {
     path: "/home",

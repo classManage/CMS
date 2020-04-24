@@ -1,5 +1,6 @@
 export const Home = () => import("@/views/Home.vue");
 export const Login = () => import("@/views/Login.vue");
+export const Register = () => import("@/views/Register.vue");
 
 export const Basic = () => import("@/views/home/sidebar/Basic.vue");
 export const HomTeacher = () => import("@/views/home/HomTeacher.vue");
