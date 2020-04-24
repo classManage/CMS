@@ -5,7 +5,7 @@ let secret = "I_LOVE_JING";
 
 //生成token
 const generateToken = payload => {
-  let token = jwt.sign(payload, secret, { expiresIn: 10 });
+  let token = jwt.sign(payload, secret, { expiresIn: 10 * 60 * 6 });
   return token;
 };
 

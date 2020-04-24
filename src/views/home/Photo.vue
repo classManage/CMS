@@ -42,7 +42,7 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="less" scoped>
 .block {
   height: 100%;
   overflow-y: auto;

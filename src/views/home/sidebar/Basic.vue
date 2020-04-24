@@ -4,31 +4,28 @@
       <el-col :span="8">
         <el-card shadow="hover" class="mgb20" style="height:252px;">
           <div class="user-info">
-            <img src="../../assets/img/userIcon.jpeg" class="user-avator" alt />
+            <img
+              src="../../../assets/img/userIcon.jpeg"
+              class="user-avator"
+              alt
+            />
             <div class="user-info-cont">
-              <div class="user-info-name">{{ userInfo.name }}</div>
-              <div>{{ role }}</div>
+              <div class="user-info-name">{{ userInfo.nickname }}</div>
+              <el-tag type="warning" size="mini">{{ role }}</el-tag>
             </div>
           </div>
+
           <div class="user-info-list">
             上次登录时间：
-            <span>2019-11-01</span>
+            <span>2020-4-15</span>
           </div>
           <div class="user-info-list">
-            上次登录地点：
-            <span>东莞</span>
+            管理班级数量：
+            <span>6个</span>
           </div>
         </el-card>
-        <el-card shadow="hover" style="height:252px;">
-          <div slot="header" class="clearfix">
-            <span>语言详情</span>
-          </div>
-          Vue
-          <el-progress :percentage="71.3" color="#42b983"></el-progress
-          >JavaScript
-          <el-progress :percentage="24.1" color="#f1e05a"></el-progress>CSS
-          <el-progress :percentage="13.7"></el-progress>HTML
-          <el-progress :percentage="5.9" color="#f56c6c"></el-progress>
+        <el-card shadow="hover">
+          <div ref="pie" style="height: 300px"></div>
         </el-card>
       </el-col>
       <el-col :span="16">
@@ -36,10 +33,10 @@
           <el-col :span="8">
             <el-card shadow="hover" :body-style="{ padding: '0px' }">
               <div class="grid-content grid-con-1">
-                <i class="el-icon-lx-people grid-con-icon"></i>
+                <i class="el-icon-s-order grid-con-icon"></i>
                 <div class="grid-cont-right">
-                  <div class="grid-num">1234</div>
-                  <div>用户访问量</div>
+                  <div class="grid-num">12</div>
+                  <div>今日课程量</div>
                 </div>
               </div>
             </el-card>
@@ -47,7 +44,7 @@
           <el-col :span="8">
             <el-card shadow="hover" :body-style="{ padding: '0px' }">
               <div class="grid-content grid-con-2">
-                <i class="el-icon-lx-notice grid-con-icon"></i>
+                <i class="el-icon-s-comment grid-con-icon"></i>
                 <div class="grid-cont-right">
                   <div class="grid-num">321</div>
                   <div>系统消息</div>
@@ -58,16 +55,17 @@
           <el-col :span="8">
             <el-card shadow="hover" :body-style="{ padding: '0px' }">
               <div class="grid-content grid-con-3">
-                <i class="el-icon-lx-goods grid-con-icon"></i>
+                <i class="el-icon-s-claim grid-con-icon"></i>
                 <div class="grid-cont-right">
-                  <div class="grid-num">5000</div>
-                  <div>数量</div>
+                  <div class="grid-num">51</div>
+                  <div>打卡</div>
                 </div>
               </div>
             </el-card>
           </el-col>
         </el-row>
-        <el-card shadow="hover" style="height:403px;">
+
+        <el-card shadow="hover" style="height:403px;" class="mgb20">
           <div slot="header" class="clearfix">
             <span>待办事项</span>
             <el-button style="float: right; padding: 3px 0" type="text"
@@ -98,17 +96,18 @@
             </el-table-column>
           </el-table>
         </el-card>
-      </el-col>
-    </el-row>
-    <el-row :gutter="20">
-      <el-col :span="12">
         <el-card shadow="hover">
-          <!-- <schart ref="bar" class="schart" canvasId="bar" :options="options"></schart> -->
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card shadow="hover">
-          <!-- <schart ref="line" class="schart" canvasId="line" :options="options2"></schart> -->
+          <el-row style="margin: auto">
+            <el-col :span="4">距离下节课还剩：</el-col>
+            <el-col :span="20">
+              <el-progress
+                :text-inside="true"
+                :stroke-width="22"
+                :percentage="80"
+                status="warning"
+              ></el-progress>
+            </el-col>
+          </el-row>
         </el-card>
       </el-col>
     </el-row>
@@ -117,6 +116,7 @@
 
 <script>
 import { mapState } from "vuex";
+import echarts from "echarts";
 
 export default {
   name: "dashboard",
@@ -125,27 +125,27 @@ export default {
       name: "",
       todoList: [
         {
-          title: "今天要修复100个bug",
+          title: "对该班级的考试分数进行统计",
           status: false
         },
         {
-          title: "今天要修复100个bug",
+          title: "因其他老师原因下午第七节课由我来上",
           status: false
         },
         {
-          title: "今天要写100行代码加几个bug吧",
+          title: "昨天的签到记录有误，要进行核对",
           status: false
         },
         {
-          title: "今天要修复100个bug",
+          title: "好好睡个午觉",
           status: false
         },
         {
-          title: "今天要修复100个bug",
+          title: "早上起来吃早餐",
           status: true
         },
         {
-          title: "今天要写100行代码加几个bug吧",
+          title: "进行晨跑",
           status: true
         }
       ],
@@ -202,34 +202,55 @@ export default {
         ]
       },
       options2: {
-        type: "line",
         title: {
-          text: "最近几个月各品类销售趋势图"
+          text: "上课情况统计",
+          subtext: "数据来源本站",
+          left: "center"
         },
-        labels: ["6月", "7月", "8月", "9月", "10月"],
-        datasets: [
+        tooltip: {
+          trigger: "item",
+          formatter: "{b} : {c} 次 ({d}%)"
+        },
+        legend: {
+          bottom: 10,
+          left: "center",
+          data: ["迟到", "早退", "旷课", "请假", "准时"]
+        },
+        series: [
           {
-            label: "家电",
-            data: [234, 278, 270, 190, 230]
-          },
-          {
-            label: "百货",
-            data: [164, 178, 150, 135, 160]
-          },
-          {
-            label: "食品",
-            data: [74, 118, 200, 235, 90]
+            type: "pie",
+            radius: "65%",
+            center: ["50%", "50%"],
+            selectedMode: "single",
+            data: [
+              { value: 32, name: "准时" },
+              { value: 5, name: "早退" },
+              { value: 2, name: "旷课" },
+              { value: 12, name: "请假" },
+              { value: 8, name: "迟到" }
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)"
+              }
+            },
+            color: ["#67C23A", "#909399", "#F56C6C", "#409EFF", "#E6A23C"]
           }
         ]
       }
     };
   },
-  components: {},
   computed: {
     role() {
-      return this.name === "admin" ? "超级管理员" : "普通用户";
+      return this.name === "admin" ? "超级管理员" : "人民教师";
     },
     ...mapState(["userInfo"])
+  },
+  mounted() {
+    //出勤情况统计
+    echarts.init(this.$refs.pie).setOption(this.options2);
   },
   methods: {
     changeDate() {

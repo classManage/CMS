@@ -6,7 +6,12 @@ import {
   Basic,
   HomTeacher,
   Setting,
-  Photo
+  Photo,
+  Base,
+  Check,
+  HistoryCheck,
+  ClassFee,
+  Activity
 } from "@/utils/components";
 import { getLocalToken } from "@/utils/ajax";
 
@@ -28,6 +33,31 @@ const routes = [
         path: "basic",
         component: Basic,
         meta: "管理首页"
+      },
+      {
+        path: "base",
+        component: Base,
+        meta: "基本情况"
+      },
+      {
+        path: "check",
+        component: Check,
+        meta: "签到"
+      },
+      {
+        path: "historyCheck",
+        component: HistoryCheck,
+        meta: "历史考勤"
+      },
+      {
+        path: "classFee",
+        component: ClassFee,
+        meta: "班费"
+      },
+      {
+        path: "activity",
+        component: Activity,
+        meta: "活动"
       },
       {
         path: "homTeacher",

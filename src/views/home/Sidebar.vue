@@ -14,86 +14,32 @@
       <span slot="title">管理首页</span>
     </el-menu-item>
 
-    <el-submenu index="2">
-      <template slot="title">
-        <i class="el-icon-s-data"></i>
-        <span>基本情况</span>
-      </template>
-      <el-menu-item index="homTeacher">
-        <template slot="title">
-          <span>班主任</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="1-4-2">
-        <template slot="title">
-          <span>人数</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="1-4-3">
-        <template slot="title">
-          <span>获奖情况</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="photo">
-        <template slot="title">
-          <span>相册</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="1-4-5">
-        <template slot="title">
-          <span>出勤率图表</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="1-4-6">
-        <template slot="title">
-          <span>人员列表</span>
-        </template>
-      </el-menu-item>
-    </el-submenu>
+    <el-menu-item index="base">
+      <i class="el-icon-s-data"></i>
+      <span slot="title">基本情况</span>
+    </el-menu-item>
 
     <el-submenu index="3">
       <template slot="title">
         <i class="el-icon-s-claim"></i>
         <span>考勤</span>
       </template>
-      <el-menu-item index="1-4-1">
+      <el-menu-item index="check">
         <template slot="title">
-          <span>人员签到列表</span>
+          <span>签到</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="1-4-2">
+      <el-menu-item index="historyCheck">
         <template slot="title">
-          <span>一键签到</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="1-4-3">
-        <template slot="title">
-          <span>考勤历史记录</span>
+          <span>历史考勤</span>
         </template>
       </el-menu-item>
     </el-submenu>
 
-    <el-submenu index="4">
-      <template slot="title">
-        <i class="el-icon-money"></i>
-        <span>班费</span>
-      </template>
-      <el-menu-item index="1-4-1">
-        <template slot="title">
-          <span>往期班费记录</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="1-4-2">
-        <template slot="title">
-          <span>班费缴纳人员名单</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="1-4-3">
-        <template slot="title">
-          <span>拖欠次数记录</span>
-        </template>
-      </el-menu-item>
-    </el-submenu>
+    <el-menu-item index="classFee">
+      <i class="el-icon-money"></i>
+      <span slot="title">班费</span>
+    </el-menu-item>
 
     <el-submenu index="5">
       <template slot="title">
@@ -149,7 +95,7 @@
         <i class="el-icon-s-flag"></i>
         <span>班级风采</span>
       </template>
-      <el-menu-item index="1-4-1">
+      <el-menu-item index="activity">
         <template slot="title">
           <span>活动</span>
         </template>
@@ -173,7 +119,7 @@
   </el-menu>
 </template>
 
-<style>
+<style lang="less" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;
