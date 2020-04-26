@@ -74,28 +74,6 @@
       </el-card>
     </el-col>
   </el-row>
-
-  <!-- <el-submenu index="4">
-      <template slot="title">
-        <i class="el-icon-money"></i>
-        <span>班费</span>
-      </template>
-      <el-menu-item index="1-4-1">
-        <template slot="title">
-          <span>往期班费记录</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="1-4-2">
-        <template slot="title">
-          <span>班费缴纳人员名单</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="1-4-3">
-        <template slot="title">
-          <span>拖欠次数记录</span>
-        </template>
-      </el-menu-item>
-  </el-submenu>-->
 </template>
 
 <script>
