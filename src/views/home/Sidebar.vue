@@ -46,14 +46,14 @@
         <i class="el-icon-s-grid"></i>
         <span>课表</span>
       </template>
-      <el-menu-item index="1-4-1">
+      <el-menu-item index="schedule">
         <template slot="title">
-          <span>课表图</span>
+          <span>课程表</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="1-4-2">
+      <el-menu-item index="previewbeforeclass">
         <template slot="title">
-          <span>下节课</span>
+          <span>课前预习</span>
         </template>
       </el-menu-item>
     </el-submenu>

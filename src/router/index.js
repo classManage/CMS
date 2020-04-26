@@ -9,10 +9,13 @@ import {
   Setting,
   Photo,
   Base,
+  ClasSchedule,
+  PreviewBeforeClass,
   Check,
   HistoryCheck,
   ClassFee,
-  Activity
+  Activity,
+  Schedule
 } from "@/utils/components";
 import { getLocalToken } from "@/utils/ajax";
 
@@ -71,6 +74,22 @@ const routes = [
         path: "homTeacher",
         component: HomTeacher,
         meta: "老师"
+      },
+      {
+        path: "schedule",
+        component: Schedule,
+        meta: "课表",
+        children: [
+          {
+            path: "classchedule",
+            component:ClasSchedule,
+           }
+        ]
+      },
+      {
+        path: "previewbeforeclass",
+        component: PreviewBeforeClass,
+        meta: "课前预习"
       },
       {
         path: "photo",

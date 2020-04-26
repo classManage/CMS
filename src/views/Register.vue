@@ -9,33 +9,33 @@
         :rules="rules"
         ref="ruleForm"
         label-width="80px"
-      >
+         >
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="ruleForm.username"></el-input>
+          <el-input v-model="ruleForm.username" class="re-input"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="ruleForm.password"></el-input>
+          <el-input v-model="ruleForm.password" class="re-input"></el-input>
         </el-form-item>
         <el-form-item label="性别" prop="sex">
-          <el-input v-model="ruleForm.sex"></el-input>
+          <el-input v-model="ruleForm.sex" class="re-input"></el-input>
         </el-form-item>
         <el-form-item label="邮箱" prop="email">
-          <el-input v-model="ruleForm.email"></el-input>
+          <el-input v-model="ruleForm.email" class="re-input"></el-input>
         </el-form-item>
         <el-form-item label="手机号码" prop="phone">
-          <el-input v-model="ruleForm.phone"></el-input>
+          <el-input v-model="ruleForm.phone" class="re-input"></el-input>
         </el-form-item>
         <el-form-item label="学号" prop="SID">
-          <el-input v-model="ruleForm.SID"></el-input>
+          <el-input v-model="ruleForm.SID" class="re-input"></el-input>
         </el-form-item>
         <el-form-item label="昵称" prop="nickname">
-          <el-input v-model="ruleForm.nickname"></el-input>
+          <el-input v-model="ruleForm.nickname" class="re-input"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="nsubmitForm('ruleForm')"
             >立即创建</el-button
           >
-          <el-button @click="resetForm('ruleForm')">重置</el-button>
+          <el-button @click="resetForm('ruleForm')" class="reg-reset">重置</el-button>
         </el-form-item>
       </el-form>
     </el-drawer>
@@ -127,7 +127,15 @@ export default {
 <style scoped>
 .re-button {
   position: absolute;
-  left: 48%;
+  left: 48.555%;
   top: 62%;
 }
+.re-input{
+  width:450px;
+}
+.reg-reset{
+  margin-left: 240px;
+  padding: 12px 40px;
+}
+
 </style>
