@@ -71,11 +71,6 @@ const routes = [
         meta: "活动"
       },
       {
-        path: "homTeacher",
-        component: HomTeacher,
-        meta: "老师"
-      },
-      {
         path: "schedule",
         component: Schedule,
         meta: "课表",
