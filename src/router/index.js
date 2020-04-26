@@ -5,7 +5,6 @@ import {
   Register,
   Home,
   Basic,
-  HomTeacher,
   Setting,
   Photo,
   Base,
