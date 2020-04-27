@@ -1,28 +1,28 @@
 <template>
   <el-collapse v-model="collapse" accordion>
-    <el-collapse-item :name="i" v-for="(d,i) in data" :key="d.title">
+    <el-collapse-item :name="i" v-for="(d, i) in data" :key="d.title">
       <template slot="title">
         <div class="title-wrap">
-          <span class="title">{{d.title}}</span>
-          <span class="title-date">{{d.createDate}}</span>
+          <span class="title">{{ d.title }}</span>
+          <span class="title-date">{{ d.createDate }}</span>
         </div>
       </template>
       <div class="content">
         <div class="row">
           <div class="i-title">时间&地点：</div>
-          <div class="i-content">{{d.position}}</div>
+          <div class="i-content">{{ d.position }}</div>
         </div>
         <div class="row">
           <div class="i-title">活动内容：</div>
-          <div class="i-content">{{d.content}}</div>
+          <div class="i-content">{{ d.content }}</div>
         </div>
         <div class="row">
           <div class="i-title">结束时间：</div>
-          <div class="i-content">{{d.endDate}}</div>
+          <div class="i-content">{{ d.endDate }}</div>
         </div>
         <div class="row">
           <div class="i-title">联系方式：</div>
-          <div class="i-content">{{d.contact}}</div>
+          <div class="i-content">{{ d.contact }}</div>
         </div>
       </div>
       <div v-if="!hideFoot">

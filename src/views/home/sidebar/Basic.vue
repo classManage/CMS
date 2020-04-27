@@ -149,59 +149,7 @@ export default {
           status: true
         }
       ],
-      data: [
-        {
-          name: "2018/09/04",
-          value: 1083
-        },
-        {
-          name: "2018/09/05",
-          value: 941
-        },
-        {
-          name: "2018/09/06",
-          value: 1139
-        },
-        {
-          name: "2018/09/07",
-          value: 816
-        },
-        {
-          name: "2018/09/08",
-          value: 327
-        },
-        {
-          name: "2018/09/09",
-          value: 228
-        },
-        {
-          name: "2018/09/10",
-          value: 1065
-        }
-      ],
       options: {
-        type: "bar",
-        title: {
-          text: "最近一周各品类销售图"
-        },
-        xRorate: 25,
-        labels: ["周一", "周二", "周三", "周四", "周五"],
-        datasets: [
-          {
-            label: "家电",
-            data: [234, 278, 270, 190, 230]
-          },
-          {
-            label: "百货",
-            data: [164, 178, 190, 135, 160]
-          },
-          {
-            label: "食品",
-            data: [144, 198, 150, 235, 120]
-          }
-        ]
-      },
-      options2: {
         title: {
           text: "上课情况统计",
           subtext: "数据来源本站",
@@ -250,18 +198,9 @@ export default {
   },
   mounted() {
     //出勤情况统计
-    echarts.init(this.$refs.pie).setOption(this.options2);
+    echarts.init(this.$refs.pie).setOption(this.options);
   },
-  methods: {
-    changeDate() {
-      const now = new Date().getTime();
-      this.data.forEach((item, index) => {
-        const date = new Date(now - (6 - index) * 86400000);
-        item.name = `${date.getFullYear()}/${date.getMonth() +
-          1}/${date.getDate()}`;
-      });
-    }
-  }
+  methods: {}
 };
 </script>
 
@@ -342,11 +281,6 @@ export default {
   color: #999;
 }
 
-.user-info-cont div:first-child {
-  font-size: 30px;
-  color: #222;
-}
-
 .user-info-list {
   font-size: 14px;
   color: #999;
@@ -373,5 +307,12 @@ export default {
 .schart {
   width: 100%;
   height: 300px;
+}
+.user-info-name {
+  color: #222;
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
 }
 </style>

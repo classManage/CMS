@@ -29,7 +29,9 @@
           </el-input>
         </el-form-item>
         <div class="login-btn">
-          <el-button type="primary" @click="submitForm">登录</el-button>
+          <el-button type="primary" @click="submitForm" :loading="loading">{{
+            loading ? "登录中" : "登录"
+          }}</el-button>
         </div>
       </el-form>
     </div>
@@ -43,7 +45,7 @@ import { login, setLocalUsername } from "@/utils/ajax";
 export default {
   data() {
     return {
-       param: {
+      param: {
         username: "",
         password: ""
       },
@@ -57,8 +59,8 @@ export default {
           { required: true, message: "请输入密码", trigger: "blur" },
           { min: 3, max: 16, message: "长度在 3 到 16 个字符", trigger: "blur" }
         ]
-        
-      }
+      },
+      loading: false
     };
   },
   components: {
@@ -68,16 +70,18 @@ export default {
     this.$refs.myinput.focus();
   },
   methods: {
-   submitForm() {
+    submitForm() {
       //检查表单
       this.$refs.login.validate(valid => {
         if (valid) {
+          this.loading = true;
           //登录请求
           login({
             username: this.param.username,
             password: this.param.password
           })
             .then(data => {
+              this.loading = false;
               console.log(data);
               //保存用户信息
               this.$store.commit("changeUserInfo", data.userInfo);
@@ -86,8 +90,9 @@ export default {
               this.$message.success("登录成功");
               this.$router.push("/home");
             })
-            .catch(err => {
-              console.log(err);
+            .catch(() => {
+              this.loading = false;
+              this.$message.error("登录失败，请检查账号或密码");
             });
         } else {
           this.$message.error("请输入账号和密码");

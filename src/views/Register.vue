@@ -92,7 +92,12 @@ export default {
         ],
         nickname: [
           { required: true, message: "请输入昵称", trigger: "blur" },
-          { min: 3, max: 10, message: "长度在 3 到 10 个字符", trigger: "blur" }
+          {
+            min: 0,
+            max: 10,
+            message: "长度不得大于 10 个字符",
+            trigger: "blur"
+          }
         ],
         email: [
           { required: true, message: "请输入邮箱", trigger: "blur" },
