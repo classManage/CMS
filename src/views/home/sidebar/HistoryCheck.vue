@@ -30,7 +30,7 @@
       :default-sort="{ prop: 'id', order: 'ascending' }"
     >
       <el-table-column
-        prop="id"
+        prop="SID"
         label="学号"
         sortable
         align="center"
@@ -50,22 +50,22 @@
       </el-table-column>
       <el-table-column label="迟到/次" align="center">
         <template slot-scope="scope">
-          <span style="color: #FF7340">{{ scope.row.late }}</span>
+          <span style="color: #FF7340">{{ scope.row.kaoqin.late }}</span>
         </template>
       </el-table-column>
       <el-table-column label="早退/次" align="center">
         <template slot-scope="scope">
-          <span style="color: #E6A23C">{{ scope.row.leave }}</span>
+          <span style="color: #E6A23C">{{ scope.row.kaoqin.leave }}</span>
         </template>
       </el-table-column>
       <el-table-column label="旷课/次" align="center">
         <template slot-scope="scope">
-          <span style="color: #FF4040">{{ scope.row.absent }}</span>
+          <span style="color: #FF4040">{{ scope.row.kaoqin.absent }}</span>
         </template>
       </el-table-column>
       <el-table-column label="请假/次" align="center">
         <template slot-scope="scope">
-          <span style="color: #409EFF">{{ scope.row.please }}</span>
+          <span style="color: #409EFF">{{ scope.row.kaoqin.please }}</span>
         </template>
       </el-table-column>
       <el-table-column align="center" label="本阶段/评分">
@@ -75,7 +75,7 @@
             round
             icon="el-icon-star-off"
             size="mini"
-            v-if="filterData(scope.row) === '优秀'"
+            v-if="filterData(scope.row.kaoqin) === '优秀'"
             >优秀</el-button
           >
           <el-button
@@ -83,7 +83,7 @@
             round
             icon="el-icon-star-off"
             size="mini"
-            v-else-if="filterData(scope.row) === '良好'"
+            v-else-if="filterData(scope.row.kaoqin) === '良好'"
             >良好</el-button
           >
           <el-button
@@ -101,12 +101,11 @@
 </template>
 
 <script>
-import student from "@/assets/json/18移动班级名单.json";
+import { mapState } from "vuex";
 
 export default {
   data() {
     return {
-      tableData: student,
       search: "",
       date: ""
     };
@@ -125,10 +124,11 @@ export default {
   },
   computed: {
     filterStudent() {
-      return this.tableData.filter(item =>
+      return this.currentClass.students.filter(item =>
         Object.values(item).some(v => String(v).includes(this.search))
       );
-    }
+    },
+    ...mapState(["currentClass"])
   },
   mounted() {}
 };

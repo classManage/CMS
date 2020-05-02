@@ -35,10 +35,10 @@
       :data="filterStudent"
       height="600px"
       stripe
-      :default-sort="{ prop: 'id', order: 'ascending' }"
+      :default-sort="{ prop: 'SID', order: 'ascending' }"
     >
       <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column prop="id" label="学号" sortable></el-table-column>
+      <el-table-column prop="SID" label="学号" sortable></el-table-column>
       <el-table-column label="姓名">
         <template slot-scope="scope">
           <i
@@ -57,12 +57,12 @@
           <el-tooltip
             class="item"
             effect="dark"
-            :content="String(scope.row.late)"
+            :content="String(scope.row.kaoqin.late)"
             placement="top"
           >
             <el-progress
               :stroke-width="20"
-              :percentage="filterData(scope.row, scope.row.late)"
+              :percentage="filterData(scope.row.kaoqin, scope.row.kaoqin.late)"
               :show-text="false"
               color="#FF7340"
             ></el-progress>
@@ -74,12 +74,12 @@
           <el-tooltip
             class="item"
             effect="dark"
-            :content="String(scope.row.leave)"
+            :content="String(scope.row.kaoqin.leave)"
             placement="top"
           >
             <el-progress
               :stroke-width="20"
-              :percentage="filterData(scope.row, scope.row.leave)"
+              :percentage="filterData(scope.row.kaoqin, scope.row.kaoqin.leave)"
               status="warning"
               :show-text="false"
             ></el-progress>
@@ -91,12 +91,14 @@
           <el-tooltip
             class="item"
             effect="dark"
-            :content="String(scope.row.absent)"
+            :content="String(scope.row.kaoqin.absent)"
             placement="top"
           >
             <el-progress
               :stroke-width="20"
-              :percentage="filterData(scope.row, scope.row.absent)"
+              :percentage="
+                filterData(scope.row.kaoqin, scope.row.kaoqin.absent)
+              "
               :show-text="false"
               color="#FF4040"
             ></el-progress>
@@ -108,12 +110,14 @@
           <el-tooltip
             class="item"
             effect="dark"
-            :content="String(scope.row.please)"
+            :content="String(scope.row.kaoqin.please)"
             placement="top"
           >
             <el-progress
               :stroke-width="20"
-              :percentage="filterData(scope.row, scope.row.please)"
+              :percentage="
+                filterData(scope.row.kaoqin, scope.row.kaoqin.please)
+              "
               :show-text="false"
             ></el-progress>
           </el-tooltip>
@@ -176,12 +180,12 @@
 </template>
 
 <script>
-import student from "@/assets/json/18移动班级名单.json";
+import { mapState } from "vuex";
+import Vue from "vue";
 
 export default {
   data() {
     return {
-      tableData: student,
       search: "",
       command: "点到"
     };
@@ -196,16 +200,12 @@ export default {
       this.command = command;
     },
     handleClick() {
-      let arr = this.$refs.table.selection.map(v =>
-        Object.assign(v, { check: this.command })
-      );
-      let length = arr.length;
-      this.tableData.reduce((arr, item) => {
-        let find = arr.find(v => v.id === item.id);
-        if (!find) arr.push(item);
-        return arr;
-      }, arr);
-      this.tableData = arr;
+      let checkArr = this.$refs.table.selection;
+      let length = checkArr.length;
+      this.currentClass.students.forEach(v => {
+        checkArr.find(i => i.SID === v.SID) &&
+          Vue.set(v, "check", this.command);
+      });
       this.$notify({
         title: "成功",
         message: `共${length}名同学标记为已${this.command}`,
@@ -215,8 +215,9 @@ export default {
     }
   },
   computed: {
+    ...mapState(["currentClass"]),
     filterStudent() {
-      return this.tableData.filter(item =>
+      return this.currentClass.students.filter(item =>
         Object.values(item).some(v => String(v).includes(this.search))
       );
     }

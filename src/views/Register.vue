@@ -9,7 +9,7 @@
         :rules="rules"
         ref="ruleForm"
         label-width="80px"
-         >
+      >
         <el-form-item label="用户名" prop="username">
           <el-input v-model="ruleForm.username" class="re-input"></el-input>
         </el-form-item>
@@ -35,7 +35,9 @@
           <el-button type="primary" @click="nsubmitForm('ruleForm')"
             >立即创建</el-button
           >
-          <el-button @click="resetForm('ruleForm')" class="reg-reset">重置</el-button>
+          <el-button @click="resetForm('ruleForm')" class="reg-reset"
+            >重置</el-button
+          >
         </el-form-item>
       </el-form>
     </el-drawer>
@@ -135,12 +137,11 @@ export default {
   left: 48.555%;
   top: 62%;
 }
-.re-input{
-  width:450px;
+.re-input {
+  width: 450px;
 }
-.reg-reset{
+.reg-reset {
   margin-left: 240px;
   padding: 12px 40px;
 }
-
 </style>

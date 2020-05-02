@@ -76,8 +76,8 @@ const routes = [
         children: [
           {
             path: "classchedule",
-            component:ClasSchedule,
-           }
+            component: ClasSchedule
+          }
         ]
       },
       {
