@@ -1,37 +1,93 @@
 <template>
     <div class="schedule">
-        <el-button type="primary">增加</el-button>
-         <el-button type="info" plain>导出课表</el-button>
-         <div class="title">
+       <el-button class="kb" type="info" plain>导出课表</el-button>
+        <div class="title">
          <div class="titlefirst">课</div>
          <div class="titlesecond">程</div>
          <div class="titlethirdly">表</div>
          </div>
-       <el-row :gutter="12" class="box">
-    <el-col :span="3">
-       <el-card shadow="hover">
-        <el-tree
-        :data="data"
-        accordion
-        node-key="id"
-        size="small"
-        :default-expanded-keys="[3,10]"
-        :default-checked-keys="[10]"
-       @node-click="handleNodeClick">
-        </el-tree>
-         </el-card>
-    </el-col>
-    <el-col :span="15" class="two">
-        <el-card shadow="hover" >
-          <ClasSchedule></ClasSchedule>
-         </el-card>
-    </el-col>
-    <el-col :span="5">
-        <el-card shadow="hover">
-        提示<br>
-        <span>课程表有效时间:2020-2-26至2020-6-26有效</span>
-        </el-card>
-    </el-col>
+         <el-row :gutter="12" class="box">
+        <el-col :span="16" class="two">
+            <el-card shadow="hover" >
+              <ClasSchedule></ClasSchedule>
+              <p><strong>提示：</strong>课程表于2020年05月至2020年07月有效</p>
+            </el-card>
+        </el-col>
+        <el-col :span="15">
+           <el-card shadow="hover">
+              <el-button class="add" type="success" size="mini" @click="add">增加</el-button>
+                <el-table
+                :data="tableData" 
+                size="small"
+                :header-cell-style="{'text-align':'center','background-color':'#f5f5f6'}"
+                :cell-style="{'text-align': 'center' }"
+                height="280"
+                style="width: 99%">
+               <el-table-column
+                  label="课程"
+                  width="150">
+                  <template slot-scope="scope">
+                    <el-popover trigger="hover" placement="top">
+                      <p>课程名: {{ scope.row.name }}</p>
+                      <p>教师: {{ scope.row.tename }}</p>
+                      <div slot="reference" class="name-wrapper">
+                        <el-tag size="medium">{{ scope.row.name }}</el-tag>
+                      </div>
+                    </el-popover>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="课时"
+                  width="100">
+                  <template slot-scope="scope">
+                   <span>{{ scope.row.classhour }}</span>
+                  </template>
+                </el-table-column>
+                 <el-table-column
+                  label="考核方式"
+                  width="100">
+                  <template slot-scope="scope">
+                   <span>{{ scope.row.date }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column label="操作">
+                  <template slot-scope="scope">
+                    <el-button
+                      size="mini"
+                      type="primary"
+                      @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                    <el-button
+                      size="mini"
+                      type="danger"
+                      @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                  </template>
+                </el-table-column>
+              </el-table>
+              </el-card>
+              <el-dialog :title="dialogTitle" width="50%" :visible.sync="iconFormVisible">
+                <el-form :inline="true" :model="Info" class="demo-form-inline">
+                  <el-form-item label="课程名">
+                    <el-popover trigger="hover" placement="top">
+                      <el-input v-model="Info.name" placeholder="课程名"></el-input>
+                      <el-input v-model="Info.tename" placeholder="教师"></el-input>
+                      <div slot="reference" class="name-wrapper">
+                        <el-tag size="medium">{{ Info.name }}</el-tag>
+                      </div>
+                    </el-popover>
+                  </el-form-item>
+                  <el-form-item label="课时">
+                    <el-input v-model="Info.classhour" placeholder="课时"></el-input>
+                  </el-form-item>
+                  <el-form-item label="考核方式">
+                    <el-input v-model="Info.date" placeholder="考核方式"></el-input>
+                  </el-form-item>
+                  </el-form>
+                <div slot="footer" class="dialog-footer">
+                  <el-button @click="iconFormVisible = false">取 消</el-button>
+                  <el-button type="primary" @click="submitUser()">确 定</el-button>
+                </div>
+              </el-dialog>
+        </el-col>
     </el-row>
     
  </div>
@@ -41,45 +97,73 @@ import { ClasSchedule } from "@/utils/components";
 export default {
   data(){
         return{
-        data: [
-        {
-          id:1,
-          label: '16级',
-          children: [
-              { label: '16移动互联网',id:4}, 
-              {label: '16大数据',id:5},
-              {label: '16java程序设计',id:6}
-            ]
-          },
-        {
-          id:2,
-          label: '17级',
-          children: [
-              {label: '17移动互联网',id:7}, 
-              {label: '17大数据',id:8},
-              {label: '17java程序设计',id:9}
-            ]
-          },
-        {
-          id:3,
-          label: '18级',
-          children: [
-              {label: '18移动互联网',id:10}, 
-              {label: '18大数据',id:11},
-              {label: '18java程序设计',id:12}
-            ]
-          },
-      ],
-        defaultProps: {
-          children: 'children',
-          label: 'label'
+          iconFormVisible: false,
+          Info:{},
+          dialogTitle: '增加',
+          rowIndex: null,
+          tableData: [{
+          date: '考查',
+          name: '语文',
+          tename: '邢老师',
+          classhour:2
+        }, {
+          date: '考试',
+          name: 'html5+Css3项目开发',
+          tename: '许老师',
+          classhour:4
+        }, {
+          date: '考试',
+          name: 'Android综合训练',
+          tename: '龚老师',
+          classhour:6
+        }, {
+          date: '考查',
+          name: 'PHP程序设计',
+          tename: '刘老师',
+          classhour:6
         },
+        {
+          date: '考查',
+          name: '小程序项目开发',
+          tename: '许老师',
+          classhour:4
+        }]
+       
        }
     },
     methods:{
-       handleNodeClick(data) {
-       console.log(data);
+      add() {
+      this.dialogTitle = '增加';
+      this.Info = {};
+      this.iconFormVisible = true;
+    },
+       handleEdit(index, row) {
+      this.dialogTitle = '编辑';
+      this.Info = row;
+      this.iconFormVisible = true;
+      this.rowIndex = index;
+        // console.log(index, row);
       },
+      handleDelete(index, row) {
+        // console.log(index, row);
+         this.$confirm(`确定删除${row.name}吗?`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'error',
+      }).then(() => {
+        this.tableData.splice(index, 1);
+      });
+      },
+      // 弹窗确定
+    submitUser() {
+      if (this.dialogTitle === '编辑') {
+        this.tableData.splice(this.rowIndex, 1, this.Info);
+        this.iconFormVisible = false;
+        return;
+      }
+      this.tableData.splice(0, 0, this.Info);
+      this.iconFormVisible = false;
+    },
       
     },
    components:{
@@ -88,15 +172,14 @@ export default {
 }
 </script>
 <style scoped>
-.el-button{
-    margin-bottom: 20px;
+.kb{
+  margin-bottom: 30px;
 }
-.el-tree{
-    height: 360px;
-   
+.add{
+  margin-bottom: 10px;
 }
 .el-card{
-  height: 360px;
+  height: 500px;
 }
 .title{
   display: flex;
@@ -104,7 +187,7 @@ export default {
   height:70px;
   z-index: 1;
   position:absolute;
-  left: 38%;
+  left:24%;
   top:4%;
   justify-content:space-between;
   }
@@ -150,4 +233,5 @@ export default {
   .schedule{
     position: relative;
   }
+  
 </style>

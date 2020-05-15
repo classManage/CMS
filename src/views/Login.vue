@@ -199,10 +199,4 @@ export default {
   height: 36px;
   margin-bottom: 10px;
 }
-/* .re-button{
-  position: absolute;
-  left: 48%;
-  top: 20%;
-  border-radius: 50%;
-} */
 </style>

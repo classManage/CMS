@@ -6,7 +6,7 @@
             :header-cell-style="{'text-align':'center','background-color':'#f5f5f6'}"
             :cell-style="{'text-align': 'center' }"
             border
-            style="width: 100%">
+            style="width: 100%;margin-bottom: 20px;">
             <el-table-column
             prop="date"
             label="时间"
