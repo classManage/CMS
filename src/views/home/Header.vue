@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" v-loading.fullscreen.lock="fullscreenLoading">
     <div class="item">
       <i
         :class="
@@ -51,14 +51,14 @@
 
 <script>
 import { mapState } from "vuex";
-import { setLocalToken } from "@/utils/ajax";
+import { setLocalToken, getClasses } from "@/utils/ajax";
 
 export default {
   data() {
     return {
       options: [
         {
-          value: "18移动互联网",
+          value: "18移动互联网应用技术高技班",
           label: "18移动互联网"
         },
         {
@@ -78,15 +78,57 @@ export default {
           label: "18汽车维修五年"
         }
       ],
-      value: "18移动互联网"
+      value: "18移动互联网应用技术高技班",
+      fullscreenLoading: false
     };
   },
   computed: {
     ...mapState("theme", ["themeText"]),
-    ...mapState(["userInfo"])
+    ...mapState(["classes", "userInfo"])
   },
   props: {
     isCollapse: Boolean
+  },
+  watch: {
+    value: {
+      handler(newVal, oldVal) {
+        if (newVal) {
+          let index = this.classes.findIndex(v => v.class === newVal);
+          if (index > -1) {
+            this.$store.commit("changeCurrentClass", this.classes[index]);
+          } else {
+            this.fullscreenLoading = true;
+            setTimeout(() => {
+              getClasses(newVal)
+                .then(data => {
+                  console.log(data);
+                  this.fullscreenLoading = false;
+                  if (data) {
+                    this.$store.commit("addClasses", data);
+                    this.$store.commit("changeCurrentClass", data);
+                    this.$message({
+                      message: `当前管理班级：${newVal}`,
+                      type: "success"
+                    });
+                  } else {
+                    this.value = oldVal;
+                    this.$message({
+                      message: `没有找到该班级`,
+                      type: "error"
+                    });
+                  }
+                })
+                .catch(() => {
+                  this.fullscreenLoading = false;
+                  setLocalToken("");
+                  this.$router.push("/login");
+                });
+            }, 2000);
+          }
+        }
+      },
+      immediate: true
+    }
   },
   methods: {
     handleCollapse() {

@@ -2,16 +2,16 @@
   <div>
     <el-card shadow="hover">
       <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane :label="'最新活动('+data.length+')'" name="new">
+        <el-tab-pane :label="'最新活动(' + data.length + ')'" name="new">
           <Message :data="data"></Message>
         </el-tab-pane>
-        <el-tab-pane :label="'进行中活动('+data.length+')'" name="now">
+        <el-tab-pane :label="'进行中活动(' + data.length + ')'" name="now">
           <Message :data="data" hideFoot></Message>
         </el-tab-pane>
-        <el-tab-pane :label="'往期活动('+data.length+')'" name="before">
+        <el-tab-pane :label="'往期活动(' + data.length + ')'" name="before">
           <Message :data="data" hideFoot></Message>
         </el-tab-pane>
-        <el-tab-pane :label="'我参加的活动('+data.length+')'" name="join">
+        <el-tab-pane :label="'我参加的活动(' + data.length + ')'" name="join">
           <Message :data="data" hideFoot></Message>
         </el-tab-pane>
       </el-tabs>
@@ -71,4 +71,3 @@ export default {
   }
 };
 </script>
-

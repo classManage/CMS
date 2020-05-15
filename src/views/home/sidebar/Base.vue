@@ -8,23 +8,27 @@
               <div>
                 <el-avatar :size="50" :src="circleUrl"></el-avatar>
               </div>
-              <h2>许锦辉</h2>
+              <h2 class="text">{{ currentClass.admin.name }}</h2>
               <el-tag type="success" size="mini" effect="dark">班主任</el-tag>
             </div>
             <div class="content">
-              <div class="row">
+              <div class="row text">
                 <span class="option">荣誉:</span>
-                <el-tag type="warning" size="mini">优秀教师</el-tag>
-                <el-tag type="success" size="mini">道德模范</el-tag>
-                <el-tag type="danger" size="mini">活雷锋</el-tag>
+                <el-tag
+                  type="warning"
+                  size="mini"
+                  v-for="d in currentClass.admin.honor"
+                  :key="d"
+                  >{{ d }}</el-tag
+                >
               </div>
               <div class="row">
                 <span class="option">联系电话:</span>
-                17569985132
+                {{ currentClass.admin.phone }}
               </div>
               <div class="row">
                 <span class="option">执教时间:</span>
-                3年
+                {{ currentClass.admin.duration }}
               </div>
             </div>
           </div>
@@ -88,7 +92,7 @@
           <div class="flex table-top">
             <div class="left">
               <el-tag type="danger" effect="plain" size="small"
-                >本班 {{ tableData.length }} 人</el-tag
+                >本班 {{ currentClass.students.length }} 人</el-tag
               >
             </div>
             <el-tooltip effect="dark" content="导出" placement="right">
@@ -103,7 +107,7 @@
             size="small"
             :default-sort="{ prop: 'id', order: 'ascending' }"
           >
-            <el-table-column prop="id" label="学号" sortable></el-table-column>
+            <el-table-column prop="SID" label="学号" sortable></el-table-column>
             <el-table-column label="姓名">
               <template slot-scope="scope">
                 <i
@@ -129,28 +133,28 @@
                 <el-popover placement="right" title trigger="hover">
                   <div class="mini-item">
                     <el-tag size="mini">请假</el-tag>
-                    <span class="item-text">{{ scope.row.please }}</span>
+                    <span class="item-text">{{ scope.row.kaoqin.please }}</span>
                   </div>
                   <div class="mini-item">
                     <el-tag type="info" size="mini">迟到</el-tag>
 
-                    <span class="item-text">{{ scope.row.late }}</span>
+                    <span class="item-text">{{ scope.row.kaoqin.late }}</span>
                   </div>
                   <div class="mini-item">
                     <el-tag type="warning" size="mini">早退</el-tag>
 
-                    <span class="item-text">{{ scope.row.leave }}</span>
+                    <span class="item-text">{{ scope.row.kaoqin.leave }}</span>
                   </div>
                   <div class="mini-item">
                     <el-tag type="danger" size="mini">旷课</el-tag>
 
-                    <span class="item-text">{{ scope.row.absent }}</span>
+                    <span class="item-text">{{ scope.row.kaoqin.absent }}</span>
                   </div>
                   <el-button
                     :type="
-                      scope.row.absent > 5 ||
-                      scope.row.leave > 10 ||
-                      scope.row.late > 10
+                      scope.row.kaoqin.absent > 5 ||
+                      scope.row.kaoqin.leave > 10 ||
+                      scope.row.kaoqin.late > 10
                         ? 'danger'
                         : 'success'
                     "
@@ -172,41 +176,13 @@
             <el-tooltip
               class="item"
               effect="dark"
-              content="优秀班级体"
+              :content="d"
+              v-for="d in currentClass.classHonor"
+              :key="d"
               placement="top-start"
             >
               <div class="center-item">
-                <div class="bg">优秀班级体</div>
-              </div>
-            </el-tooltip>
-            <el-tooltip
-              class="item"
-              effect="dark"
-              content="文明班级"
-              placement="top-start"
-            >
-              <div class="center-item">
-                <div class="bg">文明班级</div>
-              </div>
-            </el-tooltip>
-            <el-tooltip
-              class="item"
-              effect="dark"
-              content="课业训练优秀作品"
-              placement="top-start"
-            >
-              <div class="center-item">
-                <div class="bg">课业训练优秀作品</div>
-              </div>
-            </el-tooltip>
-            <el-tooltip
-              class="item"
-              effect="dark"
-              content="模范班级"
-              placement="top-start"
-            >
-              <div class="center-item">
-                <div class="bg">模范班级</div>
+                <div class="bg">{{ d }}</div>
               </div>
             </el-tooltip>
           </div>
@@ -220,15 +196,14 @@
 </template>
 
 <script>
-import student from "@/assets/json/18移动班级名单.json";
 import echarts from "echarts";
+import { mapState } from "vuex";
 
 export default {
   data() {
     return {
       circleUrl: require("@/assets/img/teacherIcon.jpg"),
       studentIcon: require("@/assets/img/studentIcon.jpg"),
-      tableData: student,
       search: "",
       options: {
         title: {
@@ -259,7 +234,7 @@ export default {
             areaStyle: {},
             data: [
               {
-                value: [60, 73, 85, 40, 60],
+                value: [52, 36, 58, 69, 78],
                 name: "本班出勤汇总"
               }
             ]
@@ -269,27 +244,35 @@ export default {
       }
     };
   },
+  watch: {},
   methods: {},
   computed: {
     filterStudent() {
-      return this.tableData.filter(item =>
+      return this.currentClass.students.filter(item =>
         Object.values(item).some(v => String(v).includes(this.search))
       );
-    }
+    },
+    ...mapState(["currentClass"])
   },
   mounted() {
-    let obj = this.tableData.reduce((pre, item) => ({
-      late: pre.late + item.late,
-      leave: pre.leave + item.leave,
-      absent: pre.absent + item.absent,
-      please: pre.please + item.please
-    }));
-    let arr = Object.values(obj);
+    let obj = this.currentClass.students.reduce((pre, item) => {
+      return {
+        kaoqin: {
+          late: pre.kaoqin.late + item.kaoqin.late,
+          leave: pre.kaoqin.leave + item.kaoqin.leave,
+          absent: pre.kaoqin.absent + item.kaoqin.absent,
+          please: pre.kaoqin.please + item.kaoqin.please
+        }
+      };
+    });
+    let arr = Object.values(obj.kaoqin);
     arr.push(
-      Math.floor(arr.reduce((pre, item) => pre + item) / this.tableData.length)
+      Math.floor(
+        arr.reduce((pre, item) => pre + item) /
+          this.currentClass.students.length
+      )
     );
     this.options.series[0].data[0].value = arr;
-    //考勤汇总雷达图
     echarts.init(this.$refs.axis).setOption(this.options);
   }
 };
@@ -396,5 +379,10 @@ export default {
 }
 .table-top {
   justify-content: space-between;
+}
+.text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 </style>

@@ -8,8 +8,13 @@
         :model="ruleForm"
         :rules="rules"
         ref="ruleForm"
+<<<<<<< HEAD
         label-width="90px"
         >
+=======
+        label-width="80px"
+      >
+>>>>>>> temp
         <el-form-item label="用户名" prop="username">
           <el-input v-model="ruleForm.username" class="re-input" placeholder="username"> 
             <el-button slot="prepend" icon="el-icon-s-custom"></el-button>
@@ -49,7 +54,9 @@
           <el-button type="primary" @click="nsubmitForm('ruleForm')"
             >立即创建</el-button
           >
-          <el-button @click="resetForm('ruleForm')" class="reg-reset">重置</el-button>
+          <el-button @click="resetForm('ruleForm')" class="reg-reset"
+            >重置</el-button
+          >
         </el-form-item>
       </el-form>
     </el-drawer>
@@ -106,7 +113,12 @@ export default {
         ],
         nickname: [
           { required: true, message: "请输入昵称", trigger: "blur" },
-          { min: 3, max: 10, message: "长度在 3 到 10 个字符", trigger: "blur" }
+          {
+            min: 0,
+            max: 10,
+            message: "长度不得大于 10 个字符",
+            trigger: "blur"
+          }
         ],
         email: [
           { required: true, message: "请输入邮箱", trigger: "blur" },
@@ -144,6 +156,7 @@ export default {
   left: 48.555%;
   top: 62%;
 }
+<<<<<<< HEAD
 .re-input{
   width:300px;
 }
@@ -170,6 +183,13 @@ export default {
 }
 /deep/ .el-form-item__label{
   color:#fff !important;
+=======
+.re-input {
+  width: 450px;
 }
-
+.reg-reset {
+  margin-left: 240px;
+  padding: 12px 40px;
+>>>>>>> temp
+}
 </style>

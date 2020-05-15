@@ -27,4 +27,26 @@ get {{url}}/users
 
 ### 个人信息
 get {{url}}/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlOTllMTM3YWEwNDhlMmE5YzU5OTM4ZCIsImlhdCI6MTU4NzE4ODAyMywiZXhwIjoxNTg3MTg4MDQzfQ.8YxznUNWZC3m64raxQw9IBUK1WecovgaPOk3GfFtM4o
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlOWM1YWQ3ODljNTZmMjkzNDlhYzhjOCIsImlhdCI6MTU4ODA4MDMzOCwiZXhwIjoxNTg4MDgzOTM4fQ.BejdF3xVh3BG2oSKzMulyoaO_XFvTCpjGfdLMUwgo3w
+
+### 班级信息
+POST {{url}}/classes HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlOWM1YWQ3ODljNTZmMjkzNDlhYzhjOCIsImlhdCI6MTU4ODE1NDE1MywiZXhwIjoxNTg4MTU3NzUzfQ.zeavi8QoIYB0vCXOsLJgyeIIG2kxEP32PN0mmw3A9mQ
+{{json}}
+
+{
+    "class": "18移动互联网应用技术高技班"
+}
+
+### 追加资产记录
+POST {{url}}/pushMoneyMessage
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlOWM1YWQ3ODljNTZmMjkzNDlhYzhjOCIsImlhdCI6MTU4ODE1NDE1MywiZXhwIjoxNTg4MTU3NzUzfQ.zeavi8QoIYB0vCXOsLJgyeIIG2kxEP32PN0mmw3A9mQ
+{{json}}
+
+{ 
+    "class": "18移动互联网应用技术高技班",
+    "content": "班级支出10元",
+    "detail": "",
+    "timestamp": "2020-4-5 12:53:21",
+    "type": "1"
+}

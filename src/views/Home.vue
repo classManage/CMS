@@ -13,7 +13,9 @@
       <el-main>
         <Navigation></Navigation>
         <keep-alive>
-          <router-view></router-view>
+          <router-view
+            v-if="Object.keys(this.currentClass).length"
+          ></router-view>
         </keep-alive>
       </el-main>
     </el-container>
@@ -33,7 +35,7 @@ export default {
   },
   computed: {
     ...mapState("theme", ["themeHeader", "themeSidebar"]), //主题，为了实现多皮肤切换
-    ...mapState(["userInfo"])
+    ...mapState(["userInfo", "currentClass"])
   },
   components: {
     Sidebar,
@@ -46,6 +48,11 @@ export default {
     }
   },
   mounted() {
+    // changeMaxMoney('18移动互联网应用技术高技班', 0).then(data=>{
+    //   console.log(data);
+    // }).catch(err=>{
+    //   console.log(err)
+    // })
     //如果vuex中没有用户信息，则尝试根据token更新用户信息
     if (!Object.keys(this.userInfo).length) {
       profile()
