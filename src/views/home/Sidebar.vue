@@ -53,7 +53,7 @@
       </el-menu-item>
       <el-menu-item index="previewbeforeclass">
         <template slot="title">
-          <span>课前预习</span>
+          <span>选修课</span>
         </template>
       </el-menu-item>
     </el-submenu>
