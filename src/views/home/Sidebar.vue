@@ -51,7 +51,7 @@
           <span>课程表</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="previewbeforeclass">
+      <el-menu-item index="optionalcourse">
         <template slot="title">
           <span>选修课</span>
         </template>

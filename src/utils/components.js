@@ -19,5 +19,5 @@ export const Message = () =>
 export const Schedule = () => import("@/views/home/sidebar/Schedule.vue");
 export const ClasSchedule = () =>
   import("@/views/home/sidebar/classchedule/ClasSchedule.vue");
-export const PreviewBeforeClass = () =>
-  import("@/views/home/sidebar/PreviewBeforeClass.vue");
+export const OptionalCourse = () =>
+  import("@/views/home/sidebar/OptionalCourse.vue");

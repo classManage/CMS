@@ -9,7 +9,7 @@ import {
   Photo,
   Base,
   ClasSchedule,
-  PreviewBeforeClass,
+  OptionalCourse,
   Check,
   HistoryCheck,
   ClassFee,
@@ -81,9 +81,9 @@ const routes = [
         ]
       },
       {
-        path: "previewbeforeclass",
-        component: PreviewBeforeClass,
-        meta: "课前预习"
+        path: "optionalcourse",
+        component: OptionalCourse,
+        meta: "选修课"
       },
       {
         path: "photo",

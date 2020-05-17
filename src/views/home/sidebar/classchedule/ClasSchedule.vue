@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
     <div>
        <el-table 
             :data="tableData"
@@ -53,46 +52,6 @@
             <span v-text="scope.row.friday"></span>
             </template>
             </el-table-column>
-=======
-  <div>
-    <el-table
-      :data="tableData"
-      height="350"
-      :header-cell-style="{
-        'text-align': 'center',
-        'background-color': '#f5f5f6'
-      }"
-      :cell-style="{ 'text-align': 'center' }"
-      border
-      style="width: 100%"
-    >
-      <el-table-column prop="date" label="时间" width="189"> </el-table-column>
-      <el-table-column prop="monday" label="周一" width="189">
-        <template slot-scope="scope">
-          <span v-text="scope.row.monday"></span>
-        </template>
-      </el-table-column>
-      <el-table-column prop="tuesday" label="周二" width="189">
-        <template slot-scope="scope">
-          <span v-text="scope.row.tuesday"></span>
-        </template>
-      </el-table-column>
-      <el-table-column prop="wednesday" label="周三" width="189">
-        <template slot-scope="scope">
-          <span v-text="scope.row.wednesday"></span>
-        </template>
-      </el-table-column>
-      <el-table-column prop="thursday" label="周四" width="189">
-        <template slot-scope="scope">
-          <span v-text="scope.row.thursday"></span>
-        </template>
-      </el-table-column>
-      <el-table-column prop="friday" label="周五" width="189">
-        <template slot-scope="scope">
-          <span v-text="scope.row.friday"></span>
-        </template>
-      </el-table-column>
->>>>>>> temp
     </el-table>
   </div>
 </template>

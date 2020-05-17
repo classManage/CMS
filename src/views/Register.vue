@@ -3,18 +3,14 @@
     <el-button type="text" class="re-button" @click="dialog = true"
       >注册用户</el-button
     >
-    <el-drawer title="新用户注册" :visible.sync="dialog" direction="ltr" class="aa"  size="100%">
+    <el-drawer title="新用户注册" :visible.sync="dialog" direction="ltr" class="newuser"  size="100%">
       <el-form
         :model="ruleForm"
         :rules="rules"
         ref="ruleForm"
-<<<<<<< HEAD
         label-width="90px"
-        >
-=======
-        label-width="80px"
       >
->>>>>>> temp
+
         <el-form-item label="用户名" prop="username">
           <el-input v-model="ruleForm.username" class="re-input" placeholder="username"> 
             <el-button slot="prepend" icon="el-icon-s-custom"></el-button>
@@ -25,11 +21,7 @@
             <el-button slot="prepend" icon="el-icon-lock"></el-button>
           </el-input>
         </el-form-item>
-        <el-form-item label="性别" prop="sex">
-          <el-input v-model="ruleForm.sex" class="re-input" placeholder="sex">
-            <el-button slot="prepend" icon="el-icon-guide"></el-button>
-          </el-input>
-        </el-form-item>
+       
         <el-form-item label="邮箱" prop="email">
           <el-input v-model="ruleForm.email" class="re-input" placeholder="email">
             <el-button slot="prepend" icon="el-icon-message"></el-button>
@@ -50,8 +42,12 @@
             <el-button slot="prepend" icon="el-icon-user"></el-button>
           </el-input>
         </el-form-item>
+         <el-form-item label="性别" prop="sex">
+          <el-radio v-model="ruleForm.sex" label="男" name="sex">男</el-radio>
+         <el-radio v-model="ruleForm.sex" label="女" name="sex">女</el-radio>
+        </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="nsubmitForm('ruleForm')"
+          <el-button type="primary" @click="nsubmitForm('ruleForm')" class="nsu-bmi"
             >立即创建</el-button
           >
           <el-button @click="resetForm('ruleForm')" class="reg-reset"
@@ -84,7 +80,7 @@ export default {
       ruleForm: {
         username: "",
         password: "",
-        sex: "",
+        sex: "男",
         email: "",
         phone: "",
         SID: "",
@@ -156,17 +152,30 @@ export default {
   left: 48.555%;
   top: 62%;
 }
-<<<<<<< HEAD
 .re-input{
   width:300px;
 }
-.reg-reset{
-  margin-left: 100px;
-  padding: 12px 36px;
+.nsu-bmi{
+   padding: 10px 10px !important;
 }
-.aa{
+.nsu-bmi:hover{
+  background: linear-gradient(#03a9f4,#ffeb3b,#F56C6C,#03a9f4,);
+}
+.reg-reset{
+  margin-left: 135px;
+  padding: 10px 25px;
+}
+.reg-reset:hover{
+  background: linear-gradient(#03a9f4,#ffeb3b,#F56C6C,#03a9f4,);
+}
+.newuser{
   width:23%;
   height: 70%;
+  top:1%;
+  left:1%;
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(241, 238, 238, 0.2);
+  
 }
 /deep/ :focus{
   outline:0;
@@ -183,13 +192,8 @@ export default {
 }
 /deep/ .el-form-item__label{
   color:#fff !important;
-=======
-.re-input {
-  width: 450px;
 }
-.reg-reset {
-  margin-left: 240px;
-  padding: 12px 40px;
->>>>>>> temp
+/deep/ .el-radio{
+  color:#fff !important;
 }
 </style>
