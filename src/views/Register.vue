@@ -3,12 +3,14 @@
     <el-button type="text" class="re-button" @click="dialog = true"
       >注册用户</el-button
     >
-    <el-drawer title="新用户注册" :visible.sync="dialog" direction="ltr" class="newuser"  size="100%">
+    <el-drawer  :visible.sync="dialog"  direction="ltr" class="newuser"  size="100%">
+      <div class="header">新用户注册</div>
       <el-form
         :model="ruleForm"
         :rules="rules"
         ref="ruleForm"
         label-width="90px"
+        class="form-list"
       >
 
         <el-form-item label="用户名" prop="username">
@@ -150,50 +152,65 @@ export default {
 .re-button {
   position: absolute;
   left: 48.555%;
-  top: 62%;
+  top: 64%;
 }
 .re-input{
-  width:300px;
+  width:90%;
 }
 .nsu-bmi{
    padding: 10px 10px !important;
+  
 }
 .nsu-bmi:hover{
   background: linear-gradient(#03a9f4,#ffeb3b,#F56C6C,#03a9f4,);
 }
 .reg-reset{
-  margin-left: 135px;
-  padding: 10px 25px;
+ position:absolute;
+ bottom:0px;
+ right:25px;
+ padding: 10px 25px;
 }
 .reg-reset:hover{
   background: linear-gradient(#03a9f4,#ffeb3b,#F56C6C,#03a9f4,);
 }
 .newuser{
   width:23%;
-  height: 70%;
+  height:600px;
   top:1%;
   left:1%;
   border-radius: 5px;
   box-shadow: 0 0 3px rgba(241, 238, 238, 0.2);
-  
-}
+  }
 /deep/ :focus{
   outline:0;
  }
  /deep/ .el-drawer {
    background: rgba(225, 225, 255, 0.3) !important;
+   
   }
 /deep/ .el-drawer__header{
-  color: #fff !important;
-  font-size: 20px !important;
+  padding:20px;
   border-bottom: 1px solid #ddd;
-   text-align: center;
-  line-height: 50px;
-}
+ }
 /deep/ .el-form-item__label{
   color:#fff !important;
 }
 /deep/ .el-radio{
   color:#fff !important;
 }
+.header{
+  position:absolute;
+  top:20px;
+  left: 35%;
+  color:#fff;
+  font-size: 20px;
+ }
+/deep/ .el-drawer__close-btn{
+ font-size: 20px !important;
+ color: #fff !important;
+}
+.form-list{
+  height:500px;
+  position: relative;
+ }
 </style>

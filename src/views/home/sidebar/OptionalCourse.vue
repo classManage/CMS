@@ -1,27 +1,19 @@
 <template>
     <div>
-       <!-- <el-row>
-       <el-col :span="18">
-          <el-card shadow="hover">
-       <div class="chart">
-            <div ref="myChart" :style="{width: '100%', height: '300px'}"></div>
-         </div> 
-          </el-card> 
-      </el-col>
-      </el-row> -->
-     <el-card class="box-card">
-      <el-row :gutter="500">
-        <el-col :span="8">
+      <el-row>
+        <el-col :span="2">
           <el-button class="add" type="success" size="small" @click="add">我要选课</el-button>
-           <el-button class="add" type="success" size="small">选课表</el-button>
         </el-col>
-        <el-col :span="10" class="search">
-           <el-input placeholder="请输入学号快速查找">
+        <el-col :span="2">
+          <el-button class="add" type="success" size="small">选课表</el-button>
+        </el-col>
+        <el-col :span="6" :offset="14">
+          <el-input placeholder="请输入学号快速查找">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         </el-col>
       </el-row>
-      <el-table :data="tableData" stripe :height="400">
+       <el-table :data="tableData" stripe :height="400">
         <el-table-column prop="date" label="日期" align="center">
         </el-table-column>
         <el-table-column prop="stuid" label="学号" align="center">
@@ -44,13 +36,12 @@
           </template>
         </el-table-column>
       </el-table>
-    </el-card>
     <!--弹窗-->
     <div class="dialogone">
-    <el-dialog :title="dialogTitle" width="18%" :visible.sync="iconFormVisible">
-      <el-form :inline="true" :model="userInfo" class="demo-form-inline">
+    <el-dialog :title="dialogTitle" width="25%" :visible.sync="iconFormVisible">
+      <el-form :inline="true" :model="userInfo">
         <el-form-item label="姓名">
-          <el-input v-model="userInfo.name" placeholder="姓名"></el-input>
+          <el-input v-model="userInfo.name" placeholder="姓名" size="medium"></el-input>
         </el-form-item>
         <el-form-item label="日期">
           <el-form-item prop="date">
@@ -72,7 +63,7 @@
     </el-dialog>
     </div>
    <div class="dialogtwo">
-    <el-dialog  width="18%" :visible.sync="iconFormVisiblet">
+    <el-dialog :title="dialogTitle" width="25%" :visible.sync="iconFormVisiblet">
       <el-form :inline="true" :model="curriculadata" :rules="rules" ref="curriculadata">
         <el-form-item label="姓名" prop="name" >
           <el-input v-model="curriculadata.name" placeholder="姓名"></el-input>
@@ -93,11 +84,11 @@
       </div>
     </el-dialog>
     </div>
-    <el-row :gutter="100" class="chartt">
+    <el-row :gutter="25" class="chartt">
       <el-col :span="8">
         <el-card shadow="hover">
           <div class="text">未选课人数统计</div>
-          <el-progress type="circle" :percentage="25" color="red" :width="240" class="notcurricula"></el-progress>
+          <el-progress type="circle" :percentage="25" color="red" :width="260" class="notcurricula"></el-progress>
         </el-card>
       </el-col>
      <el-col :span="16">
@@ -121,7 +112,7 @@ export default {
         iconFormVisiblet:false,
         curriculadata: {},
         userInfo: {},
-        dialogTitle: '增加',
+        dialogTitle: '选课',
         rowIndex: null,
         tableData: [{
           date: '2016-05-02',
@@ -177,7 +168,7 @@ export default {
   methods: {
     // 增加
     add() {
-      // this.dialogTitle = '增加';
+      this.dialogTitle = '选课';
       this.curriculadata = {};
       this.iconFormVisiblet = true;
     },
@@ -250,19 +241,17 @@ export default {
 .confirm{
   padding: 10px 15px !important;
 }
-.search{
-  margin-left: 550px !important;
-}
 .chartt{
   margin-top: 20px;
-  /* margin-left:20px !important; */
 }
 .notcurricula{
   margin-top: 50px;
-  margin-left: 120px;
+  margin-left: 90px;
 }
 .text{
- text-align: center;
  color: #666;
+ font-size: 15px;
+ font-weight:bold;
 }
+
 </style>

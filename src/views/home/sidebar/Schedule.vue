@@ -6,14 +6,14 @@
          <div class="titlesecond">程</div>
          <div class="titlethirdly">表</div>
          </div>
-         <el-row :gutter="12" class="box">
-        <el-col :span="16" class="two">
+         <el-row :gutter="25" class="box">
+        <el-col :span="15" class="two">
             <el-card shadow="hover" >
               <ClasSchedule></ClasSchedule>
               <p><strong>提示：</strong>课程表于2020年05月至2020年07月有效</p>
             </el-card>
         </el-col>
-        <el-col :span="15">
+        <el-col :span="9">
            <el-card shadow="hover">
               <el-button class="add" type="success" size="mini" @click="add">增加</el-button>
                 <el-table
@@ -22,10 +22,10 @@
                 :header-cell-style="{'text-align':'center','background-color':'#f5f5f6'}"
                 :cell-style="{'text-align': 'center' }"
                 height="280"
-                style="width: 99%;margin-bottom: 30px;">
+                style="width: 100%;margin-bottom: 30px;">
                <el-table-column
                   label="课程"
-                  width="150">
+                  width="160">
                   <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top">
                       <p>课程名: {{ scope.row.name }}</p>
@@ -38,28 +38,24 @@
                 </el-table-column>
                 <el-table-column
                   label="课时"
-                  width="100">
+                  width="115">
                   <template slot-scope="scope">
                    <span>{{ scope.row.classhour }}</span>
                   </template>
                 </el-table-column>
                  <el-table-column
                   label="考核方式"
-                  width="100">
+                  width="115">
                   <template slot-scope="scope">
                    <span>{{ scope.row.date }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="操作">
+                <el-table-column label="操作" width="115">
                   <template slot-scope="scope">
-                    <el-button
-                      size="mini"
-                      type="primary"
-                      @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                    <el-button
-                      size="mini"
-                      type="danger"
-                      @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                    <el-button size="mini" type="primary" icon="el-icon-edit" circle
+                      @click="handleEdit(scope.$index, scope.row)"></el-button>
+                    <el-button size="mini" type="danger" icon="el-icon-delete" circle
+                      @click="handleDelete(scope.$index, scope.row)"></el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -189,7 +185,7 @@ export default {
   height: 70px;
   z-index: 1;
   position:absolute;
-  left:24%;
+  left:20%;
   top:4%;
   justify-content:space-between;
   }
