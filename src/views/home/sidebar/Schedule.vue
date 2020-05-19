@@ -73,7 +73,7 @@
                     </el-popover>
                   </el-form-item>
                   <el-form-item label="课时">
-                    <el-input v-model="Info.classhour" placeholder="课时"></el-input>
+                    <el-input v-model="Info.classhour" placeholder="课时" class="dia_input"></el-input>
                   </el-form-item>
                   <el-form-item label="考核方式">
                     <el-input v-model="Info.date" placeholder="考核方式"></el-input>
@@ -104,7 +104,7 @@ export default {
           classhour:2
         }, {
           date: '考试',
-          name: 'html5+Css3项目开发',
+          name: 'Html5+Css3项目开发',
           tename: '许老师',
           classhour:4
         }, {
@@ -130,7 +130,7 @@ export default {
     methods:{
       add() {
       this.dialogTitle = '增加';
-      this.Info = {};
+       this.Info = {};
       this.iconFormVisible = true;
     },
        handleEdit(index, row) {
@@ -156,9 +156,10 @@ export default {
         this.tableData.splice(this.rowIndex, 1, this.Info);
         this.iconFormVisible = false;
         return;
-      }
+      }else if(!this.Info.name==''&&this.Info.date &&this.Info.classhour){
       this.tableData.splice(0, 0, this.Info);
       this.iconFormVisible = false;
+      }
     },
       
     },
@@ -230,6 +231,9 @@ export default {
   }
   .schedule{
     position: relative;
+  }
+  .dia_input{
+    width:160px !important;
   }
   
 </style>

@@ -8,7 +8,7 @@
           <el-button class="add" type="success" size="small">选课表</el-button>
         </el-col>
         <el-col :span="6" :offset="14">
-          <el-input placeholder="请输入学号快速查找">
+          <el-input placeholder="请输入学号快速查找" v-model="value">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         </el-col>
@@ -114,6 +114,7 @@ export default {
         userInfo: {},
         dialogTitle: '选课',
         rowIndex: null,
+        value:'',
         tableData: [{
           date: '2016-05-02',
           name: '王同学',
