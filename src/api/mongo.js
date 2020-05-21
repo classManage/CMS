@@ -23,7 +23,7 @@ let schema = new mongoose.Schema({
   phone: { type: String },
   SID: { type: String },
   nickname: { type: String }
-});
+  });
 let Users = mongoose.model("users", schema);
 
 let classesSchema = new mongoose.Schema({

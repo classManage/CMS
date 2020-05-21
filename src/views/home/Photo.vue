@@ -1,87 +1,91 @@
 <template>
-  <!-- 相册 -->
-  <div class="block">
-    <el-timeline class="b-timeline">
-      <el-timeline-item
-        class="b-timeline-item"
-        v-for="item in mydata"
-        :key="item.id"
-        :timestamp="item.timestamp"
-        placement="top"
-      >
-        <el-card class="b-card">
-          <h4>{{ item.title }}</h4>
-          <div class="demo-image__lazy" scroll-container>
-            <el-image
-              class="b-image"
-              v-for="url in item.image"
-              :key="url"
-              :src="url"
-              lazy
-              :preview-src-list="item.image"
-            ></el-image>
-          </div>
-          <span><strong>提示:</strong>用鼠标点击图片可开启预览功能</span>
-        </el-card>
-      </el-timeline-item>
-    </el-timeline>
+  <div class="con">
+  <div class="example-3d">
+    <swiper class="swiper" :options="swiperOption">
+      <swiper-slide><img src="@/assets/img/1.jpg" ></swiper-slide>
+      <swiper-slide><img src="@/assets/img/10.jpg" ></swiper-slide>
+      <swiper-slide><img src="@/assets/img/9.jpg" ></swiper-slide>
+      <swiper-slide><img src="@/assets/img/8.jpg" ></swiper-slide>
+      <swiper-slide><img src="@/assets/img/5.jpg" ></swiper-slide>
+      <swiper-slide><img src="@/assets/img/6.jpg" ></swiper-slide>
+      <swiper-slide><img src="@/assets/img/7.jpg" ></swiper-slide>
+    </swiper>
+    </div>
+    <WaterfallFlow></WaterfallFlow>
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      mydata: []
-    };
-  },
-  mounted() {
-    this.$axios.get("/json/pdata.json").then(res => {
-      console.log(res.data.dataArry);
-      this.mydata = res.data.dataArry;
-    });
-  }
-};
-</script>
-<style lang="less" scoped>
-.block {
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.b-timeline {
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 
-.b-card {
-  height: 500px;
-  width: 500px;
-}
-.demo-image__lazy {
-  width: 460px;
-  height: 400px;
-  border: 2px solid #eee;
-  overflow-y: scroll;
-  border-radius: 5px;
-}
-.b-image {
+<script>
+ import { WaterfallFlow } from "@/utils/components";
+  import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+  import 'swiper/css/swiper.css'
+  export default {
+    name: 'swiper-example-3d-coverflow',
+    title: '3D Coverflow effect',
+    components: {
+      Swiper,
+      SwiperSlide,
+      WaterfallFlow
+    },
+    data() {
+      return {
+         swiperOption: {
+          effect: 'coverflow',
+          grabCursor: true,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            //loop:true,
+            modifier: 1,
+            autoplay:true,
+            slideShadows:true
+          },
+        }
+      }
+    },
+    mounted(){
+       
+    },
+    
+  };
+</script>
+
+<style scoped>
+.con{
   width: 100%;
-  height: 400px;
-}
-.b-image img {
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-}
-h4 {
-  margin-top: 0;
-  text-align: center;
-  margin-bottom: 15px;
-  font-size: 18px;
-}
-span {
-  line-height: 30px;
-}
+   background-color: #dedede;
+ }
+.example-3d {
+    width: 100%;
+    margin: 0 auto;
+    height: 300px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border: 4px solid #fff;
+    margin-bottom: 20px;
+     background-color: #fff !important;
+    }
+ .swiper {
+    height: 100%;
+    width: 100%;
+  }
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 300px;
+      height: 300px;
+      text-align: center;
+      font-weight: bold;
+      background-position: center;
+      background-size: cover;
+     }
+    .swiper-slide img{
+        width:100%;
+        height:100%;
+    }
+  
 </style>

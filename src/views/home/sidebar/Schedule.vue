@@ -1,6 +1,6 @@
 <template>
     <div class="schedule">
-       <el-button class="kb" type="info" plain>导出课表</el-button>
+       <el-button class="kb" type="info" plain @click="exportExcel">导出课表</el-button>
         <div class="title">
          <div class="titlefirst">课</div>
          <div class="titlesecond">程</div>
@@ -17,7 +17,7 @@
            <el-card shadow="hover">
               <el-button class="add" type="success" size="mini" @click="add">增加</el-button>
                 <el-table
-                :data="tableData" 
+                :data="teaData" 
                 size="small"
                 :header-cell-style="{'text-align':'center','background-color':'#f5f5f6'}"
                 :cell-style="{'text-align': 'center' }"
@@ -90,6 +90,8 @@
 </template>
 <script>
 import { ClasSchedule } from "@/utils/components";
+import FileSaver from "file-saver";
+import XLSX from "xlsx";
 export default {
   data(){
         return{
@@ -97,7 +99,7 @@ export default {
           Info:{},
           dialogTitle: '增加',
           rowIndex: null,
-          tableData: [{
+          teaData: [{
           date: '考查',
           name: '语文',
           tename: '邢老师',
@@ -128,6 +130,23 @@ export default {
        }
     },
     methods:{
+      exportExcel(){
+      var wb = XLSX.utils.table_to_book(document.querySelector(".clasScheTable"));
+      var wbout = XLSX.write(wb,{
+        bookType:"xlsx",
+        bookSST:true,
+        type:"array"
+      });
+      try{
+        FileSaver.saveAs(
+          new Blob([wbout],{type:"application/octet-stream"}),'课程表.xlsx'
+        );
+      } catch (e){
+        if(typeof console !=="undefined")
+        console.log(e,wbout);
+      }
+      return wbout;
+      },
       add() {
       this.dialogTitle = '增加';
        this.Info = {};
@@ -147,17 +166,17 @@ export default {
         cancelButtonText: '取消',
         type: 'error',
       }).then(() => {
-        this.tableData.splice(index, 1);
+        this.teaData.splice(index, 1);
       });
       },
       // 弹窗确定
     submitUser() {
       if (this.dialogTitle === '编辑') {
-        this.tableData.splice(this.rowIndex, 1, this.Info);
+        this.teaData.splice(this.rowIndex, 1, this.Info);
         this.iconFormVisible = false;
         return;
       }else if(!this.Info.name==''&&this.Info.date &&this.Info.classhour){
-      this.tableData.splice(0, 0, this.Info);
+      this.teaData.splice(0, 0, this.Info);
       this.iconFormVisible = false;
       }
     },

@@ -14,7 +14,8 @@ import {
   HistoryCheck,
   ClassFee,
   Activity,
-  Schedule
+  Schedule,
+  WaterfallFlow,
 } from "@/utils/components";
 import { getLocalToken } from "@/utils/ajax";
 
@@ -88,7 +89,13 @@ const routes = [
       {
         path: "photo",
         component: Photo,
-        meta: "相册"
+        meta: "相册",
+        children: [
+          {
+            path: "waterfallflow",
+            component: WaterfallFlow
+          }
+        ]
       },
       {
         path: "Setting",

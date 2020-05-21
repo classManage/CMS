@@ -1,6 +1,7 @@
 <template>
     <div>
        <el-table 
+            class="clasScheTable"
             :data="tableData"
             height="350"
             :header-cell-style="{'text-align':'center','background-color':'#f5f5f6'}"

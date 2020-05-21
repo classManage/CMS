@@ -8,15 +8,15 @@
           <el-button class="add" type="success" size="small">选课表</el-button>
         </el-col>
         <el-col :span="6" :offset="14">
-          <el-input placeholder="请输入学号快速查找" v-model="value">
+          <el-input placeholder="请输入学号快速查找" v-model="search">
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         </el-col>
       </el-row>
-       <el-table :data="tableData" stripe :height="400">
-        <el-table-column prop="date" label="日期" align="center">
+       <el-table :data="tableData" stripe :height="400"  :default-sort = "{prop: 'date', order: 'descending'}">
+        <el-table-column prop="date"  sortable label="日期" align="center">
         </el-table-column>
-        <el-table-column prop="stuid" label="学号" align="center">
+        <el-table-column prop="stuid" sortable label="学号" align="center">
         </el-table-column>
         <el-table-column prop="name" label="姓名" align="center">
         </el-table-column>
@@ -114,7 +114,7 @@ export default {
         userInfo: {},
         dialogTitle: '选课',
         rowIndex: null,
-        value:'',
+        search:'',
         tableData: [{
           date: '2016-05-02',
           name: '王同学',
@@ -163,7 +163,7 @@ export default {
       };
       
   },
-   mounted(){
+ mounted(){
         this.drawLine();
       },
   methods: {
