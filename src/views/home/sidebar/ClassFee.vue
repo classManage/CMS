@@ -85,11 +85,10 @@
           <el-table-column label="完成度" align="center">
             <template slot-scope="scope">
               <el-progress
-                :percentage="
-                  Math.floor(
+                :percentage="Math.floor(
                     (scope.row.classFee.success / (perMoney || 1)) * 100
-                  )
-                "
+                  )"
+                :color="customColors"
               ></el-progress>
             </template>
           </el-table-column>
@@ -241,7 +240,14 @@ export default {
       PayLoading: false,
       surplusLoading: false,
       currentRow: 0,
-      fastPayLoading: false
+      fastPayLoading: false,
+      customColors: [
+        { color: "#f56c6c", percentage: 29 },
+        { color: "#e6a23c", percentage: 58 },
+        { color: "#6f7ad3", percentage: 87 },
+        { color: "#1989fa", percentage: 99 },
+        { color: "#5cb87a", percentage: 100 }
+      ]
     };
   },
   watch: {

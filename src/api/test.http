@@ -1,5 +1,6 @@
 @url=http://localhost:5000/api
 @json=Content-Type: application/json
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlOWM1YWQ3ODljNTZmMjkzNDlhYzhjOCIsImlhdCI6MTU5MDEzMTE2NSwiZXhwIjoxNTkwMTM0NzY1fQ.UA7yRbIVsRLy3Btoa9Vt9un27GckNHwBIX3E7J2-saU
 
 ### 登录
 post {{url}}/login
@@ -31,11 +32,25 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlOWM1YWQ3O
 
 ### 班级信息
 POST {{url}}/classes HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlOWM1YWQ3ODljNTZmMjkzNDlhYzhjOCIsImlhdCI6MTU4ODE1NDE1MywiZXhwIjoxNTg4MTU3NzUzfQ.zeavi8QoIYB0vCXOsLJgyeIIG2kxEP32PN0mmw3A9mQ
+Authorization: Bearer {{token}}
 {{json}}
 
 {
     "class": "18移动互联网应用技术高技班"
+}
+
+### 选课操作
+post {{url}}/handleSCourse
+Authorization: Bearer {{token}}
+{{json}}
+
+{
+    "clName": "18移动互联网应用技术高技班",
+    "id": "5eaa686a5494ea17d02d651d",
+    "oldCName": "android组件开发",
+    "newCName": "android组件开发",
+    "date": "2020-05-07 10:30:02",
+    "mode": "a"
 }
 
 ### 追加资产记录

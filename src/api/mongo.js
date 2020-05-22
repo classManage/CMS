@@ -23,7 +23,7 @@ let schema = new mongoose.Schema({
   phone: { type: String },
   SID: { type: String },
   nickname: { type: String }
-  });
+});
 let Users = mongoose.model("users", schema);
 
 let classesSchema = new mongoose.Schema({
@@ -64,10 +64,29 @@ let classesSchema = new mongoose.Schema({
       },
       classFee: {
         success: { type: Number }
-      }
+      },
+      selectCourse: [
+        {
+          courseName: { type: String, unique: true },
+          dateTime: {
+            type: Date,
+            default: localDate(),
+            set(val) {
+              return localDate(val);
+            }
+          }
+        }
+      ]
     }
   ]
 });
 let Classes = mongoose.model("classes", classesSchema);
 // Users.db.dropCollection("users")//删除所有数据
 module.exports = { Users, Classes };
+
+//计算时间差
+function localDate(v) {
+  const d = new Date(v || Date.now());
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+  return d.toISOString();
+ }

@@ -179,7 +179,7 @@ router.post("/changeSurplusMoney", async (req, res) => {
     let message = {
       content: `班费${
         space < 0 ? "支出" : "赎回"
-      } ${space} ￥，【剩余班费】 ${num} ￥`,
+        } ${space} ￥，【剩余班费】 ${num} ￥`,
       detail: req.body.detail,
       type: space < 0 ? "1" : "2"
     };
@@ -313,6 +313,48 @@ function pushMoneyMessage(record, userId, className) {
     });
   });
 }
+
+/**
+ * （追加，删除，修改）选课
+ * clName: 班级全称
+ * id: 学生id
+ * oldCName: 课程名
+ * newCName: 新课程名（mode不是u可以不传）
+ * date: 时间
+ * mode: 模式（a: 追加，d: 删除，u: 修改）
+ */
+router.post('/handleSCourse', async (req, res) => {
+  let { clName, id, oldCName, newCName, date, mode } = req.body;
+  try {
+    let classObj = await Classes.findOne({ class: clName });
+    switch (mode) {
+      case 'a':
+        if(!classObj.students.find(v => v._id == id).selectCourse.find(v=>v.courseName==oldCName))
+        classObj.students.find(v => v._id == id).selectCourse.push({
+          courseName: oldCName,
+          dateTime: date
+        })
+        break;
+      case 'd':
+        classObj.students.find(v => v._id == id).selectCourse = classObj.students.find(v => v._id == id).selectCourse.filter(v=>{
+          if(v.courseName!=oldCName) return v;
+        })
+        break;
+      case 'u':
+        classObj.students.find(v => v._id == id).selectCourse.forEach(v=>{
+          if(v.courseName==oldCName){
+            v.courseName = newCName;
+            v.dateTime = date;
+          }
+        })
+        break;
+    }
+    await classObj.save();
+    res.send('成功')
+  } catch (err) {
+    res.send(err)
+  }
+})
 
 /**
  * db.json
