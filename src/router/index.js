@@ -16,6 +16,7 @@ import {
   Activity,
   Schedule,
   WaterfallFlow,
+  ScoreInquiry,
 } from "@/utils/components";
 import { getLocalToken } from "@/utils/ajax";
 
@@ -64,6 +65,11 @@ const routes = [
         path: "classFee",
         component: ClassFee,
         meta: "班费"
+      },
+      {
+        path: "scoreinquiry",
+        component: ScoreInquiry,
+        meta: "成绩查询"
       },
       {
         path: "activity",

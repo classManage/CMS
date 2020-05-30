@@ -14,6 +14,7 @@ export const HistoryCheck = () =>
   import("@/views/home/sidebar/HistoryCheck.vue");
 export const ClassFee = () => import("@/views/home/sidebar/ClassFee.vue");
 export const Activity = () => import("@/views/home/sidebar/Activity.vue");
+export const ScoreInquiry = () => import("@/views/home/sidebar/ScoreInquiry.vue");
 export const Message = () =>
   import("@/views/home/sidebar/activity/Message.vue");
 export const Schedule = () => import("@/views/home/sidebar/Schedule.vue");

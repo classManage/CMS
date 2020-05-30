@@ -58,38 +58,11 @@
       </el-menu-item>
     </el-submenu>
 
-    <el-submenu index="6">
-      <template slot="title">
-        <i class="el-icon-s-marketing"></i>
-        <span>分数查询</span>
-      </template>
-      <el-menu-item index="1-4-1">
-        <template slot="title">
-          <span>期中</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="1-4-2">
-        <template slot="title">
-          <span>期末</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="1-4-3">
-        <template slot="title">
-          <span>模拟</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="1-4-4">
-        <template slot="title">
-          <span>考证</span>
-        </template>
-      </el-menu-item>
-      <el-menu-item index="1-4-5">
-        <template slot="title">
-          <span>测验</span>
-        </template>
-      </el-menu-item>
-    </el-submenu>
-
+    <el-menu-item index="scoreinquiry">
+         <i class="el-icon-s-marketing"></i>
+         <span slot="title">成绩查询</span>
+       </el-menu-item>
+      
     <el-submenu index="7">
       <template slot="title">
         <i class="el-icon-s-flag"></i>

@@ -1,6 +1,8 @@
 <template>
     <div class="schedule">
+      <el-tooltip class="item" effect="dark" content="导出Excel表" placement="right">
        <el-button class="kb" type="info" plain @click="exportExcel">导出课表</el-button>
+      </el-tooltip>
         <div class="title">
          <div class="titlefirst">课</div>
          <div class="titlesecond">程</div>
@@ -52,8 +54,10 @@
                 </el-table-column>
                 <el-table-column label="操作" width="115">
                   <template slot-scope="scope">
+                    <el-tooltip class="item" effect="dark" content="编辑" placement="left">
                     <el-button size="mini" type="primary" icon="el-icon-edit" circle
                       @click="handleEdit(scope.$index, scope.row)"></el-button>
+                    </el-tooltip>
                     <el-button size="mini" type="danger" icon="el-icon-delete" circle
                       @click="handleDelete(scope.$index, scope.row)"></el-button>
                   </template>
@@ -178,6 +182,11 @@ export default {
       }else if(!this.Info.name==''&&this.Info.date &&this.Info.classhour){
       this.teaData.splice(0, 0, this.Info);
       this.iconFormVisible = false;
+      }else{
+         this.$message({
+          message: '警告哦,内容不能为空',
+          type: 'warning'
+        });
       }
     },
       

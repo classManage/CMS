@@ -329,19 +329,19 @@ router.post('/handleSCourse', async (req, res) => {
     let classObj = await Classes.findOne({ class: clName });
     switch (mode) {
       case 'a':
-        if(!classObj.students.find(v => v._id == id).selectCourse.find(v=>v.courseName==oldCName))
-        classObj.students.find(v => v._id == id).selectCourse.push({
+        if(!classObj.students.find(v => v.SID == id).selectCourse.find(v=>v.courseName==oldCName))
+        classObj.students.find(v => v.SID == id).selectCourse.push({
           courseName: oldCName,
           dateTime: date
         })
         break;
       case 'd':
-        classObj.students.find(v => v._id == id).selectCourse = classObj.students.find(v => v._id == id).selectCourse.filter(v=>{
+        classObj.students.find(v => v.SID == id).selectCourse = classObj.students.find(v => v.SID == id).selectCourse.filter(v=>{
           if(v.courseName!=oldCName) return v;
         })
         break;
       case 'u':
-        classObj.students.find(v => v._id == id).selectCourse.forEach(v=>{
+        classObj.students.find(v => v.SID == id).selectCourse.forEach(v=>{
           if(v.courseName==oldCName){
             v.courseName = newCName;
             v.dateTime = date;
