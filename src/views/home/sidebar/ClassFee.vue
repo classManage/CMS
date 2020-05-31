@@ -4,14 +4,24 @@
       <el-card shadow="hover" class="mgb">
         <div class="hander">
           <div class="progress">
-            <el-progress type="dashboard" :percentage="percentage" :color="percentage | pColor"></el-progress>
+            <el-progress
+              type="dashboard"
+              :percentage="percentage"
+              :color="percentage | pColor"
+            ></el-progress>
             <span>缴费总进度</span>
           </div>
           <div class="right">
             <div class="row">
               <span class="row-t">应缴班费：</span>
               <el-tag size="small">{{ currentClass.classFee.max }}￥</el-tag>
-              <el-link type="warning" icon="el-icon-plus" class="button" @click="handleAdd">加征</el-link>
+              <el-link
+                type="warning"
+                icon="el-icon-plus"
+                class="button"
+                @click="handleAdd"
+                >加征</el-link
+              >
             </div>
             <div class="row">
               <span class="row-t">收到班费：</span>
@@ -19,8 +29,16 @@
             </div>
             <div class="row">
               <span class="row-t">剩余班费：</span>
-              <el-tag type="warning" size="small">{{ currentClass.classFee.surplus }}￥</el-tag>
-              <el-link type="warning" icon="el-icon-sort" class="button" @click="handleMoney">变更</el-link>
+              <el-tag type="warning" size="small"
+                >{{ currentClass.classFee.surplus }}￥</el-tag
+              >
+              <el-link
+                type="warning"
+                icon="el-icon-sort"
+                class="button"
+                @click="handleMoney"
+                >变更</el-link
+              >
             </div>
           </div>
         </div>
@@ -63,10 +81,15 @@
               :disabled="!selectionData.length"
               @click="handleAllFull"
               :loading="fastPayLoading"
-            >{{fastPayLoading?"提交中":"一键交清"}}</el-button>
+              >{{ fastPayLoading ? "提交中" : "一键交清" }}</el-button
+            >
           </el-col>
           <el-col :span="18">
-            <el-input v-model="search" placeholder="请输入要筛选的信息" size="mini"></el-input>
+            <el-input
+              v-model="search"
+              placeholder="请输入要筛选的信息"
+              size="mini"
+            ></el-input>
           </el-col>
         </el-row>
         <el-table
@@ -76,26 +99,48 @@
           ref="table"
           @selection-change="selectionChange"
         >
-          <el-table-column type="selection" width="55" align="center"></el-table-column>
-          <el-table-column prop="name" label="姓名" align="center"></el-table-column>
+          <el-table-column
+            type="selection"
+            width="55"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            prop="name"
+            label="姓名"
+            align="center"
+          ></el-table-column>
           <el-table-column label="拖欠/元" align="center">
-            <template slot-scope="scope">{{ perMoney - scope.row.classFee.success }}</template>
+            <template slot-scope="scope">{{
+              perMoney - scope.row.classFee.success
+            }}</template>
           </el-table-column>
-          <el-table-column prop="classFee.success" label="已交/元" align="center"></el-table-column>
+          <el-table-column
+            prop="classFee.success"
+            label="已交/元"
+            align="center"
+          ></el-table-column>
           <el-table-column label="完成度" align="center">
             <template slot-scope="scope">
               <el-progress
-                :percentage="Math.floor(
+                :percentage="
+                  Math.floor(
                     (scope.row.classFee.success / (perMoney || 1)) * 100
-                  )"
+                  )
+                "
                 :color="customColors"
               ></el-progress>
             </template>
           </el-table-column>
           <el-table-column label="操作" align="center">
             <template slot-scope="scope">
-              <el-popover placement="left" trigger="click" v-model="scope.row.alter">
-                <div>合计缴费：{{ scope.row.classFee.success + sutdentPayMoney }}￥</div>
+              <el-popover
+                placement="left"
+                trigger="click"
+                v-model="scope.row.alter"
+              >
+                <div>
+                  合计缴费：{{ scope.row.classFee.success + sutdentPayMoney }}￥
+                </div>
                 <div class="flex">
                   缴费：
                   <el-input-number
@@ -105,10 +150,16 @@
                     size="mini"
                     :max="perMoney - currentRow"
                     :min="currentRow * -1"
-                  ></el-input-number>￥
+                  ></el-input-number
+                  >￥
                 </div>
                 <div style="text-align: right; margin: 10px 0 0 0">
-                  <el-button size="mini" type="text" @click="scope.row.alter = false">取消</el-button>
+                  <el-button
+                    size="mini"
+                    type="text"
+                    @click="scope.row.alter = false"
+                    >取消</el-button
+                  >
                   <el-button
                     type="primary"
                     size="mini"
@@ -121,14 +172,19 @@
                         }
                       ])
                     "
-                  >{{ PayLoading ? "提交中" : "确定" }}</el-button>
+                    >{{ PayLoading ? "提交中" : "确定" }}</el-button
+                  >
                 </div>
                 <el-link
                   slot="reference"
                   type="warning"
                   icon="el-icon-edit"
-                  @click="sutdentPayMoney = 0,currentRow=scope.row.classFee.success"
-                >修改</el-link>
+                  @click="
+                    (sutdentPayMoney = 0),
+                      (currentRow = scope.row.classFee.success)
+                  "
+                  >修改</el-link
+                >
               </el-popover>
             </template>
             <template></template>
@@ -150,10 +206,14 @@
         :min="0.0"
         size="small"
         style="margin-left: 2em"
-      ></el-input-number>￥
+      ></el-input-number
+      >￥
       <span style="margin-left: 50px">
         平均每人需缴
-        <el-tag type="warning" size="medium">{{ addMoney / studentCount }}</el-tag>元
+        <el-tag type="warning" size="medium">{{
+          addMoney / studentCount
+        }}</el-tag
+        >元
       </span>
       <h4 style="margin: 10px 0">当前应缴金额：</h4>
       <el-input-number
@@ -165,7 +225,8 @@
         size="small"
         @change="handleChangeCount"
         style="margin-left: 2em"
-      ></el-input-number>￥
+      ></el-input-number
+      >￥
       <span slot="footer" class="dialog-footer">
         <el-button size="small" @click="addDialog = false">取 消</el-button>
         <el-button
@@ -174,7 +235,8 @@
           @click="handleMoneyAdd"
           :disabled="!addMoney"
           :loading="maxLoading"
-        >{{ maxLoading ? "提交中" : "确 定" }}</el-button>
+          >{{ maxLoading ? "提交中" : "确 定" }}</el-button
+        >
       </span>
     </el-dialog>
 
@@ -203,10 +265,16 @@
       ></el-input-number>
       <span style="margin-left: 30px; color: #909399">
         剩余金额：
-        <el-tag type="warning" size="small">{{ remainMoney }}</el-tag>￥
+        <el-tag type="warning" size="small">{{ remainMoney }}</el-tag
+        >￥
       </span>
       <h4 style="margin: 10px 0">备注：</h4>
-      <el-input placeholder="资金改动理由" v-model="input" clearable size="small"></el-input>
+      <el-input
+        placeholder="资金改动理由"
+        v-model="input"
+        clearable
+        size="small"
+      ></el-input>
       <span slot="footer" class="dialog-footer">
         <el-button size="small" @click="moneyDialog = false">取 消</el-button>
         <el-button
@@ -215,7 +283,8 @@
           @click="handleMoneyChange"
           :disabled="!changeMoney"
           :loading="surplusLoading"
-        >{{surplusLoading?"提交中":"确 定"}}</el-button>
+          >{{ surplusLoading ? "提交中" : "确 定" }}</el-button
+        >
       </span>
     </el-dialog>
   </el-row>

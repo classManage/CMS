@@ -3,7 +3,12 @@
     <el-button type="text" class="re-button" @click="dialog = true"
       >注册用户</el-button
     >
-    <el-drawer  :visible.sync="dialog"  direction="ltr" class="newuser"  size="100%">
+    <el-drawer
+      :visible.sync="dialog"
+      direction="ltr"
+      class="newuser"
+      size="100%"
+    >
       <div class="header">新用户注册</div>
       <el-form
         :model="ruleForm"
@@ -12,26 +17,41 @@
         label-width="90px"
         class="form-list"
       >
-
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="ruleForm.username" class="re-input" placeholder="username"> 
+          <el-input
+            v-model="ruleForm.username"
+            class="re-input"
+            placeholder="username"
+          >
             <el-button slot="prepend" icon="el-icon-s-custom"></el-button>
           </el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="ruleForm.password" class="re-input" placeholder="password">
+          <el-input
+            v-model="ruleForm.password"
+            class="re-input"
+            placeholder="password"
+          >
             <el-button slot="prepend" icon="el-icon-lock"></el-button>
           </el-input>
         </el-form-item>
-       
+
         <el-form-item label="邮箱" prop="email">
-          <el-input v-model="ruleForm.email" class="re-input" placeholder="email">
+          <el-input
+            v-model="ruleForm.email"
+            class="re-input"
+            placeholder="email"
+          >
             <el-button slot="prepend" icon="el-icon-message"></el-button>
           </el-input>
         </el-form-item>
         <el-form-item label="手机号码" prop="phone">
-          <el-input v-model="ruleForm.phone" class="re-input" placeholder="phone"> 
-             <el-button slot="prepend" icon="el-icon-phone"></el-button>
+          <el-input
+            v-model="ruleForm.phone"
+            class="re-input"
+            placeholder="phone"
+          >
+            <el-button slot="prepend" icon="el-icon-phone"></el-button>
           </el-input>
         </el-form-item>
         <el-form-item label="学号" prop="SID">
@@ -40,16 +60,23 @@
           </el-input>
         </el-form-item>
         <el-form-item label="昵称" prop="nickname">
-          <el-input v-model="ruleForm.nickname" class="re-input" placeholder="nickname">
+          <el-input
+            v-model="ruleForm.nickname"
+            class="re-input"
+            placeholder="nickname"
+          >
             <el-button slot="prepend" icon="el-icon-user"></el-button>
           </el-input>
         </el-form-item>
-         <el-form-item label="性别" prop="sex">
+        <el-form-item label="性别" prop="sex">
           <el-radio v-model="ruleForm.sex" label="男" name="sex">男</el-radio>
-         <el-radio v-model="ruleForm.sex" label="女" name="sex">女</el-radio>
+          <el-radio v-model="ruleForm.sex" label="女" name="sex">女</el-radio>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="nsubmitForm('ruleForm')" class="nsu-bmi"
+          <el-button
+            type="primary"
+            @click="nsubmitForm('ruleForm')"
+            class="nsu-bmi"
             >立即创建</el-button
           >
           <el-button @click="resetForm('ruleForm')" class="reg-reset"
@@ -154,63 +181,61 @@ export default {
   left: 48.555%;
   top: 64%;
 }
-.re-input{
-  width:90%;
+.re-input {
+  width: 90%;
 }
-.nsu-bmi{
-   padding: 10px 10px !important;
-  
+.nsu-bmi {
+  padding: 10px 10px !important;
 }
-.nsu-bmi:hover{
-  background: linear-gradient(#03a9f4,#ffeb3b,#F56C6C,#03a9f4,);
+.nsu-bmi:hover {
+  background: linear-gradient(#03a9f4, #ffeb3b, #f56c6c, #03a9f4);
 }
-.reg-reset{
- position:absolute;
- bottom:0px;
- right:25px;
- padding: 10px 25px;
+.reg-reset {
+  position: absolute;
+  bottom: 0px;
+  right: 25px;
+  padding: 10px 25px;
 }
-.reg-reset:hover{
-  background: linear-gradient(#03a9f4,#ffeb3b,#F56C6C,#03a9f4,);
+.reg-reset:hover {
+  background: linear-gradient(#03a9f4, #ffeb3b, #f56c6c, #03a9f4);
 }
-.newuser{
-  width:23%;
-  height:600px;
-  top:1%;
-  left:1%;
+.newuser {
+  width: 23%;
+  height: 600px;
+  top: 1%;
+  left: 1%;
   border-radius: 5px;
   box-shadow: 0 0 3px rgba(241, 238, 238, 0.2);
-  }
-/deep/ :focus{
-  outline:0;
- }
- /deep/ .el-drawer {
-   background: rgba(225, 225, 255, 0.3) !important;
-   
-  }
-/deep/ .el-drawer__header{
-  padding:20px;
+}
+/deep/ :focus {
+  outline: 0;
+}
+/deep/ .el-drawer {
+  background: rgba(225, 225, 255, 0.3) !important;
+}
+/deep/ .el-drawer__header {
+  padding: 20px;
   border-bottom: 1px solid #ddd;
- }
-/deep/ .el-form-item__label{
-  color:#fff !important;
 }
-/deep/ .el-radio{
-  color:#fff !important;
+/deep/ .el-form-item__label {
+  color: #fff !important;
 }
-.header{
-  position:absolute;
-  top:20px;
+/deep/ .el-radio {
+  color: #fff !important;
+}
+.header {
+  position: absolute;
+  top: 20px;
   left: 35%;
-  color:#fff;
+  color: #fff;
   font-size: 20px;
- }
-/deep/ .el-drawer__close-btn{
- font-size: 20px !important;
- color: #fff !important;
 }
-.form-list{
-  height:500px;
+/deep/ .el-drawer__close-btn {
+  font-size: 20px !important;
+  color: #fff !important;
+}
+.form-list {
+  height: 500px;
   position: relative;
- }
+}
 </style>

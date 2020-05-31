@@ -84,7 +84,7 @@ export default new Vuex.Store({
         });
     },
     handleStudentPay(store, data) {
-      console.log(data)
+      console.log(data);
       //处理学生缴费
       studentPayMoney(store.state.currentClass.class, data)
         .then(res => {

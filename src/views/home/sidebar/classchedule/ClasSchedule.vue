@@ -1,58 +1,43 @@
 <template>
-    <div>
-       <el-table 
-            class="clasScheTable"
-            :data="tableData"
-            height="350"
-            :header-cell-style="{'text-align':'center','background-color':'#f5f5f6'}"
-            :cell-style="{'text-align': 'center' }"
-            border
-            style="width: 100%;margin-bottom: 20px;">
-            <el-table-column
-            prop="date"
-            label="时间"
-            width="180">
-            </el-table-column>
-            <el-table-column
-            prop="monday"
-            label="周一"
-            width="180">
-            <template slot-scope="scope">
-            <span v-text="scope.row.monday"></span>
-            </template>
-            </el-table-column>
-             <el-table-column
-            prop="tuesday"
-            label="周二"
-            width="180">
-            <template slot-scope="scope">
-            <span v-text="scope.row.tuesday"></span>
-            </template>
-            </el-table-column>
-             <el-table-column
-            prop="wednesday"
-            label="周三"
-            width="180">
-             <template slot-scope="scope">
-            <span v-text="scope.row.wednesday"></span>
-            </template>
-            </el-table-column>
-             <el-table-column
-            prop="thursday"
-            label="周四"
-            width="180">
-            <template slot-scope="scope">
-            <span v-text="scope.row.thursday"></span>
-            </template>
-            </el-table-column>
-             <el-table-column
-            prop="friday"
-            label="周五"
-            width="180">
-            <template slot-scope="scope">
-            <span v-text="scope.row.friday"></span>
-            </template>
-            </el-table-column>
+  <div>
+    <el-table
+      class="clasScheTable"
+      :data="tableData"
+      height="350"
+      :header-cell-style="{
+        'text-align': 'center',
+        'background-color': '#f5f5f6'
+      }"
+      :cell-style="{ 'text-align': 'center' }"
+      border
+      style="width: 100%;margin-bottom: 20px;"
+    >
+      <el-table-column prop="date" label="时间" width="180"> </el-table-column>
+      <el-table-column prop="monday" label="周一" width="180">
+        <template slot-scope="scope">
+          <span v-text="scope.row.monday"></span>
+        </template>
+      </el-table-column>
+      <el-table-column prop="tuesday" label="周二" width="180">
+        <template slot-scope="scope">
+          <span v-text="scope.row.tuesday"></span>
+        </template>
+      </el-table-column>
+      <el-table-column prop="wednesday" label="周三" width="180">
+        <template slot-scope="scope">
+          <span v-text="scope.row.wednesday"></span>
+        </template>
+      </el-table-column>
+      <el-table-column prop="thursday" label="周四" width="180">
+        <template slot-scope="scope">
+          <span v-text="scope.row.thursday"></span>
+        </template>
+      </el-table-column>
+      <el-table-column prop="friday" label="周五" width="180">
+        <template slot-scope="scope">
+          <span v-text="scope.row.friday"></span>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>

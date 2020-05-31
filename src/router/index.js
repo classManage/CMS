@@ -16,7 +16,7 @@ import {
   Activity,
   Schedule,
   WaterfallFlow,
-  ScoreInquiry,
+  ScoreInquiry
 } from "@/utils/components";
 import { getLocalToken } from "@/utils/ajax";
 

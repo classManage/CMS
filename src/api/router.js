@@ -323,38 +323,52 @@ function pushMoneyMessage(record, userId, className) {
  * date: 时间
  * mode: 模式（a: 追加，d: 删除，u: 修改）
  */
-router.post('/handleSCourse', async (req, res) => {
+router.post("/handleSCourse", async (req, res) => {
   let { clName, id, oldCName, newCName, date, mode } = req.body;
+  console.log(clName, id, oldCName, newCName, date, mode);
   try {
     let classObj = await Classes.findOne({ class: clName });
     switch (mode) {
-      case 'a':
-        if(!classObj.students.find(v => v.SID == id).selectCourse.find(v=>v.courseName==oldCName))
-        classObj.students.find(v => v.SID == id).selectCourse.push({
-          courseName: oldCName,
-          dateTime: date
-        })
+      case "a":
+        if (
+          !classObj.students
+            .find(v => v.SID == id + ' ')
+            .selectCourse.find(v => v.courseName == oldCName)
+        ) {
+          classObj.students
+            .find(v => v.SID == id + ' ')
+            .selectCourse.push({
+              courseName: oldCName,
+              dateTime: date
+            });
+        }
         break;
-      case 'd':
-        classObj.students.find(v => v.SID == id).selectCourse = classObj.students.find(v => v.SID == id).selectCourse.filter(v=>{
-          if(v.courseName!=oldCName) return v;
-        })
+      case "d":
+        classObj.students.find(
+          v => v.SID == id + ' '
+        ).selectCourse = classObj.students
+          .find(v => v.SID == id + ' ')
+          .selectCourse.filter(v => {
+            if (v.courseName != oldCName) return v;
+          });
         break;
-      case 'u':
-        classObj.students.find(v => v.SID == id).selectCourse.forEach(v=>{
-          if(v.courseName==oldCName){
-            v.courseName = newCName;
-            v.dateTime = date;
-          }
-        })
+      case "u":
+        classObj.students
+          .find(v => v.SID == id + ' ')
+          .selectCourse.forEach(v => {
+            if (v.courseName == oldCName) {
+              v.courseName = newCName;
+              v.dateTime = date;
+            }
+          });
         break;
     }
     await classObj.save();
-    res.send('成功')
+    res.send(classObj);
   } catch (err) {
-    res.send(err)
+    res.send(err);
   }
-})
+});
 
 /**
  * db.json

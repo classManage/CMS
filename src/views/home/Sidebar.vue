@@ -59,10 +59,10 @@
     </el-submenu>
 
     <el-menu-item index="scoreinquiry">
-         <i class="el-icon-s-marketing"></i>
-         <span slot="title">成绩查询</span>
-       </el-menu-item>
-      
+      <i class="el-icon-s-marketing"></i>
+      <span slot="title">成绩查询</span>
+    </el-menu-item>
+
     <el-submenu index="7">
       <template slot="title">
         <i class="el-icon-s-flag"></i>

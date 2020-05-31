@@ -168,7 +168,7 @@ export const studentPayMoney = (className, { max, students }) => {
 };
 
 //选课操作
-export const handleSCourse = (data) => {
+export const handleSCourse = data => {
   return new Promise((resolve, reject) => {
     instance({
       url: url + "/handleSCourse",

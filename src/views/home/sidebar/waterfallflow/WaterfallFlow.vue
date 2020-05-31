@@ -18,13 +18,13 @@ export default {
     };
   },
   mounted() {
-    this.wrap = document.querySelector('.photo-container');
+    this.wrap = document.querySelector(".photo-container");
     this.windowHeight = window.innerHeight - this.wrap.offsetTop + 500;
     this.insertImg();
     //监听滚动事件
     let main = document.querySelector(".el-main");
     main.addEventListener("scroll", () => {
-      if (main.scrollTop > (this.windowHeight-500)) {
+      if (main.scrollTop > this.windowHeight - 500) {
         //再此插入图片
         this.windowHeight += 500;
         this.insertImg();
@@ -36,10 +36,7 @@ export default {
     insertImg() {
       var inter = setInterval(() => {
         //就是给浏览器渲染图片的时间
-        if (
-          this.wrap.scrollHeight >
-          this.windowHeight
-        ) {
+        if (this.wrap.scrollHeight > this.windowHeight) {
           //达到预期的高度. 停止
           clearInterval(inter); //停止定时器
         }

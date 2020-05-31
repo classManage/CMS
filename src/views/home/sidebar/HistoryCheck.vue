@@ -21,7 +21,7 @@
         ></el-input>
       </el-col>
     </el-row>
-     <el-table
+    <el-table
       ref="table"
       :data="filterStudent"
       height="600px"
