@@ -7,6 +7,6 @@ npm run serve
 ```
 后端接口
 ```
-cd api
+cd src/api
 node server
 ```
