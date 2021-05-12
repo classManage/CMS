@@ -18,7 +18,7 @@
     "file-saver": "^2.0.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.9",
-    "swiper": "^5.4.1",
+    "swiper": "^6.5.1",
     "vue": "^2.6.11",
     "vue-awesome-swiper": "^4.1.1",
     "vue-router": "^3.1.6",
